@@ -1,0 +1,160 @@
+.about-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1e4330 100%);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.page-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+.story-section {
+  background-color: var(--bg-white);
+}
+
+.story-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.story-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.truth-section {
+  background-color: var(--bg-light);
+}
+
+.truth-text {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--text-dark);
+}
+
+.values-section {
+  background-color: var(--bg-white);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.value-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1e4330 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(44, 95, 65, 0.3);
+}
+
+.value-card h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.meaning-section {
+  background-color: var(--bg-light);
+}
+
+.meaning-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.meaning-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.meaning-text strong {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.founder-section {
+  background-color: var(--bg-white);
+}
+
+.founder-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.founder-info h3 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.founder-quote {
+  font-size: 1.3rem;
+  font-style: italic;
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--bg-light);
+  border-left: 4px solid var(--secondary-color);
+  border-radius: 4px;
+}
+
+.founder-bio {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .values-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  
+  .value-card {
+    padding: 25px 20px;
+  }
+  
+  .value-card h3 {
+    font-size: 1.1rem;
+  }
+}
+

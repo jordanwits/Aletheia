@@ -1,0 +1,173 @@
+.beliefs-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1e4330 100%);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.page-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+.main-belief-section {
+  background-color: var(--bg-light);
+  padding: 80px 20px;
+}
+
+.belief-statement-box {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: var(--bg-white);
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.belief-statement-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.belief-statement-text {
+  font-size: 1.3rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+}
+
+.healing-design-section,
+.stewardship-section,
+.renewing-mind-section,
+.prescription-section {
+  background-color: var(--bg-white);
+}
+
+.broken-system-section,
+.words-thought-section,
+.union-section {
+  background-color: var(--bg-light);
+}
+
+.promise-land-section {
+  background-color: var(--bg-white);
+}
+
+.content-box {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.content-text strong {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.foundation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.foundation-card {
+  background-color: var(--bg-light);
+  padding: 30px;
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.foundation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.foundation-card h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.foundation-card p {
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+.scriptures-section {
+  background-color: var(--bg-light);
+}
+
+.scriptures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.scripture-card {
+  background-color: var(--bg-white);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border-top: 4px solid var(--primary-color);
+}
+
+.scripture-text {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.scripture-reference {
+  font-size: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .belief-statement-box {
+    padding: 30px 20px;
+  }
+  
+  .belief-statement-text {
+    font-size: 1.1rem;
+  }
+  
+  .foundation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .scriptures-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

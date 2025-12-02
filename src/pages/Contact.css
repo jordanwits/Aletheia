@@ -1,0 +1,150 @@
+.contact-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1e4330 100%);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.page-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+.speaking-section,
+.prayer-section,
+.general-section,
+.mailing-section,
+.whatsapp-section {
+  padding: 80px 20px;
+}
+
+.speaking-section,
+.general-section,
+.whatsapp-section {
+  background-color: var(--bg-white);
+}
+
+.prayer-section,
+.mailing-section {
+  background-color: var(--bg-light);
+}
+
+.section-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-dark);
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.section-text strong {
+  color: var(--primary-color);
+}
+
+.contact-form,
+.prayer-form,
+.mailing-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--bg-white);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.prayer-form {
+  max-width: 600px;
+}
+
+.mailing-form {
+  max-width: 600px;
+  background-color: var(--bg-white);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form .btn,
+.prayer-form .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.mailing-form .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.whatsapp-cta {
+  text-align: center;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .contact-form,
+  .prayer-form,
+  .mailing-form {
+    padding: 30px 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
