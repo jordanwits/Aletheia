@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.team-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
 .page-title {
   font-size: var(--font-size-6xl);
   margin-bottom: 20px;
@@ -14,6 +21,53 @@
 .page-subtitle {
   font-size: var(--font-size-2xl);
   opacity: 0.95;
+}
+
+/* Reveal on scroll animations (matches Mission page) */
+.reveal-on-scroll {
+  --reveal-x: 0;
+  --reveal-y: 26px;
+  --reveal-scale: 1;
+  opacity: 0;
+  transform: var(--base-transform, none) translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
+  transition: opacity var(--duration, 0.85s) ease, transform var(--duration, 0.85s) ease;
+  transition-delay: var(--delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll[data-animate="left"] {
+  --reveal-x: -28px;
+  --reveal-y: 0;
+}
+
+.reveal-on-scroll[data-animate="right"] {
+  --reveal-x: 28px;
+  --reveal-y: 0;
+}
+
+.reveal-on-scroll[data-animate="zoom"] {
+  --reveal-scale: 0.96;
+  --reveal-y: 0;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  --reveal-x: 0;
+  --reveal-y: 0;
+  --reveal-scale: 1;
+  transform: var(--base-transform, none) translate3d(0, 0, 0) scale(1);
+}
+
+.reveal-on-scroll.is-visible[data-animate="zoom"] {
+  --reveal-scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -120,20 +174,54 @@
 
 .team-member-card {
   background-color: var(--bg-white);
-  padding: 30px;
+  padding: 32px 28px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure reveal timing overrides default transition for team cards */
+.team-member-card.reveal-on-scroll {
+  transition: opacity var(--duration, 0.85s) ease, transform var(--duration, 0.85s) ease, box-shadow 0.2s ease;
+}
+
+.team-member-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .team-member-image {
-  width: 100%;
-  margin-bottom: 20px;
+  width: 170px;
+  height: 170px;
+  margin-bottom: 6px;
 }
 
-.team-member-image .placeholder-box {
-  aspect-ratio: 1;
+.team-member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
   border-radius: 50%;
+  display: block;
+  border: 5px solid var(--bg-light);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.team-member-image img.preserve-position {
+  object-position: center center;
+}
+
+.team-member-image img.lift-more {
+  object-position: center 25%;
+}
+
+.team-member-image img.lower-slight {
+  object-position: center 45%;
 }
 
 .team-member-name {
@@ -146,6 +234,7 @@
 .team-member-role {
   font-size: var(--font-size-base);
   color: var(--text-light);
+  margin: 0;
 }
 
 @media (max-width: 968px) {

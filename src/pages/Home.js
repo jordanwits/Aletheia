@@ -185,13 +185,8 @@ const Home = () => {
     });
   };
 
-  const handlePartnerClick = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#contact');
-    }
+  const handleGetInvolvedNav = (target) => {
+    navigate(`/get-involved#${target}`, { state: { target } });
   };
 
   const handleKeyActivate = (e, action) => {
@@ -402,8 +397,8 @@ const Home = () => {
               style={{ '--delay': '40ms' }}
               role="button"
               tabIndex={0}
-              onClick={() => navigate('/get-involved')}
-              onKeyDown={(e) => handleKeyActivate(e, () => navigate('/get-involved'))}
+              onClick={() => handleGetInvolvedNav('give')}
+              onKeyDown={(e) => handleKeyActivate(e, () => handleGetInvolvedNav('give'))}
             >
               <div className="cta-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -414,7 +409,7 @@ const Home = () => {
               <p className="cta-card-text">
                 Support our mission through financial partnership and help us reach more people with healing.
               </p>
-              <Link to="/get-involved" className="cta-card-btn">
+              <Link to="/get-involved#give" className="cta-card-btn">
                 Donate Now
               </Link>
             </div>
@@ -424,8 +419,8 @@ const Home = () => {
               style={{ '--delay': '120ms' }}
               role="button"
               tabIndex={0}
-              onClick={handlePartnerClick}
-              onKeyDown={(e) => handleKeyActivate(e, handlePartnerClick)}
+              onClick={() => handleGetInvolvedNav('partner')}
+              onKeyDown={(e) => handleKeyActivate(e, () => handleGetInvolvedNav('partner'))}
             >
               <div className="cta-card-icon">
                 <img src="/handshakeWhite.png" alt="Handshake" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -434,10 +429,7 @@ const Home = () => {
               <p className="cta-card-text">
                 Join us as an organization partner to bring Kingdom health principles to your community.
               </p>
-              <Link to="/#contact" onClick={(e) => {
-                e.preventDefault();
-                handlePartnerClick();
-              }} className="cta-card-btn">
+              <Link to="/get-involved#partner" className="cta-card-btn">
                 Partner with Us
               </Link>
             </div>
@@ -447,8 +439,8 @@ const Home = () => {
               style={{ '--delay': '200ms' }}
               role="button"
               tabIndex={0}
-              onClick={() => navigate('/get-involved')}
-              onKeyDown={(e) => handleKeyActivate(e, () => navigate('/get-involved'))}
+              onClick={() => handleGetInvolvedNav('volunteer')}
+              onKeyDown={(e) => handleKeyActivate(e, () => handleGetInvolvedNav('volunteer'))}
             >
               <div className="cta-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -462,7 +454,7 @@ const Home = () => {
               <p className="cta-card-text">
                 Serve with us through prayer, volunteer work, or hosting workshops in your area.
               </p>
-              <Link to="/get-involved" className="cta-card-btn">
+              <Link to="/get-involved#volunteer" className="cta-card-btn">
                 Get Started
               </Link>
             </div>

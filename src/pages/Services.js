@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Services.css';
 
 const Services = () => {
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const services = [
     {
       title: "Coaching & Discipleship",
@@ -39,10 +64,10 @@ const Services = () => {
       {/* Hero */}
       <section className="services-hero">
         <div className="container">
-          <div className="services-hero-content">
+          <div className="services-hero-content reveal-on-scroll" data-animate="zoom">
             <p className="services-hero-label">OUR OFFERINGS</p>
             <h1 className="services-hero-title">Programs & Services</h1>
-            <p className="services-hero-subtitle">
+            <p className="services-hero-subtitle" style={{ '--delay': '120ms' }}>
               Transformative programs designed to bring Heaven's healing into every area of life
             </p>
           </div>
@@ -55,7 +80,9 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className={`service-card ${index % 2 === 0 ? 'service-card-left' : 'service-card-right'}`}
+              className={`service-card ${index % 2 === 0 ? 'service-card-left' : 'service-card-right'} reveal-on-scroll`}
+              data-animate={index % 2 === 0 ? 'left' : 'right'}
+              style={{ '--delay': `${index * 140}ms` }}
             >
               <div className="service-card-image-wrapper">
                 <img 
@@ -100,7 +127,7 @@ const Services = () => {
         }}
       >
         <div className="container">
-          <div className="services-cta-content">
+          <div className="services-cta-content reveal-on-scroll" data-animate="zoom" style={{ '--delay': '140ms' }}>
             <h2 className="services-cta-title">Ready to Begin Your Healing Journey?</h2>
             <p className="services-cta-text">
               Contact us to learn more about our programs and how we can support your journey to complete healing.

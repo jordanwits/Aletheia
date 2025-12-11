@@ -1,22 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './GetInvolved.css';
 
 const GetInvolved = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const handleContactClick = (e) => {
     e.preventDefault();
     window.location.href = '/#contact';
   };
+
+  // Scroll to a card when arriving with a hash or navigation state target
+  useEffect(() => {
+    const targetId =
+      (location.state && location.state.target) ||
+      (location.hash ? location.hash.replace('#', '') : '');
+    if (!targetId) return;
+    const el = document.getElementById(targetId);
+    if (!el) return;
+
+    const scrollToTarget = () =>
+      el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+
+    // Initial pass after mount/layout
+    const t1 = setTimeout(scrollToTarget, 120);
+    // Second pass after images/content settle
+    const t2 = setTimeout(scrollToTarget, 420);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [location.hash, location.state]);
 
   return (
     <div className="get-involved">
       {/* Hero */}
       <section className="get-involved-hero">
         <div className="container">
-          <h1 className="page-title">Get Involved</h1>
-          <p className="page-subtitle">
-            Partner With Us to Bring Healing & Restoration
-          </p>
+          <div className="get-involved-hero-text reveal-on-scroll" data-animate="zoom">
+            <p className="get-involved-hero-label">WAYS TO PARTNER</p>
+            <h1 className="page-title">Get Involved</h1>
+            <p className="page-subtitle" style={{ '--delay': '140ms' }}>
+              Partner With Us to Bring Healing & Restoration
+            </p>
+          </div>
         </div>
       </section>
 
@@ -25,7 +78,7 @@ const GetInvolved = () => {
         <div className="container">
           <div className="sections-grid">
             {/* Give Section */}
-            <div className="involvement-card">
+            <div id="give" className="involvement-card reveal-on-scroll" style={{ '--delay': '0ms' }}>
               <div className="card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7564 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.0621 22.0329 6.39464C21.7564 5.72718 21.351 5.12075 20.84 4.61Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.1"/>
@@ -46,7 +99,7 @@ const GetInvolved = () => {
             </div>
 
             {/* Partner Section */}
-            <div className="involvement-card">
+            <div id="partner" className="involvement-card reveal-on-scroll" style={{ '--delay': '120ms' }}>
               <div className="card-icon">
                 <img src="/handshakeBlue.png" alt="Handshake" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
@@ -60,7 +113,7 @@ const GetInvolved = () => {
             </div>
 
             {/* Volunteer Section */}
-            <div className="involvement-card">
+            <div id="volunteer" className="involvement-card reveal-on-scroll" style={{ '--delay': '240ms' }}>
               <div className="card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -79,7 +132,7 @@ const GetInvolved = () => {
             </div>
 
             {/* Host Workshop Section */}
-            <div className="involvement-card">
+            <div id="workshop" className="involvement-card reveal-on-scroll" style={{ '--delay': '360ms' }}>
               <div className="card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
