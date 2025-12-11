@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import './Home.css';
 
@@ -123,6 +123,34 @@ const CustomDropdown = ({ id, name, value, onChange, options, placeholder }) => 
 };
 
 const Home = () => {
+  const videoRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const [contactForm, setContactForm] = useState({
     name: '',
     email: '',
@@ -157,23 +185,44 @@ const Home = () => {
     });
   };
 
+  const handlePartnerClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/#contact');
+    }
+  };
+
+  const handleKeyActivate = (e, action) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      action();
+    }
+  };
+
   return (
     <div className="home">
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-image-container">
           <video 
-            src="/Aletheia Hero Video.mp4" 
+            ref={videoRef}
             className="hero-image"
             autoPlay
             loop
             muted
             playsInline
-          />
+            preload="auto"
+            aria-hidden="true"
+            onCanPlayThrough={() => videoRef.current?.play().catch(() => {})}
+          >
+            <source src="/Aletheia Hero Video.mp4" type="video/mp4" />
+          </video>
           <div className="hero-overlay"></div>
           
           {/* Logo Overlay */}
-          <div className="hero-logo-overlay">
+          <div className="hero-logo-overlay reveal-on-scroll" data-animate="zoom">
             <img 
               src="/NavyLogo.png" 
               alt="Aletheia Logo" 
@@ -182,7 +231,7 @@ const Home = () => {
           </div>
           
           {/* Text Overlay */}
-          <div className="hero-text-overlay">
+          <div className="hero-text-overlay reveal-on-scroll" style={{ '--delay': '120ms' }}>
             <h1 className="hero-title">THE PROMISE OF HEALING</h1>
             <p className="hero-subtitle">ALETHEIA</p>
           </div>
@@ -190,7 +239,7 @@ const Home = () => {
       </section>
 
       {/* Scripture Anchor */}
-      <section className="scripture-anchor-section">
+      <section className="scripture-anchor-section reveal-on-scroll">
         <div className="container">
           <div className="scripture-content">
             <p className="scripture-text">
@@ -209,14 +258,14 @@ const Home = () => {
 
       {/* The Message */}
       <section className="message-section">
-        <div className="message-image-side">
+        <div className="message-image-side reveal-on-scroll" data-animate="left">
           <img 
             src="/Message Section.jpg" 
             alt="Message section" 
             className="message-image"
           />
         </div>
-        <div className="message-content-side">
+        <div className="message-content-side reveal-on-scroll" data-animate="right" style={{ '--delay': '80ms' }}>
           <div className="message-content">
             <p className="message-headline">THE MESSAGE</p>
             <h2 className="message-title">Heaven in Healthcare</h2>
@@ -236,7 +285,7 @@ const Home = () => {
       </section>
 
       {/* What We Believe */}
-      <section className="beliefs-preview">
+      <section className="beliefs-preview reveal-on-scroll">
         <div className="container">
           <h2 className="section-title">What We Believe</h2>
           <p className="beliefs-statement">
@@ -250,7 +299,7 @@ const Home = () => {
       <section className="services-preview">
         <div className="services-layout">
           <div className="services-text-side">
-            <div className="services-text-content">
+            <div className="services-text-content reveal-on-scroll">
               <p className="services-headline">SERVICES</p>
               <h2 className="services-title">Promised Land of Healing</h2>
               <p className="services-description">
@@ -260,7 +309,7 @@ const Home = () => {
           </div>
           
           <div className="services-panels">
-            <div className="service-panel">
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '40ms' }}>
               <div className="service-panel-image">
                 <img 
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
@@ -275,7 +324,7 @@ const Home = () => {
               <Link to="/services" className="service-panel-btn">Discover</Link>
             </div>
 
-            <div className="service-panel">
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '120ms' }}>
               <div className="service-panel-image">
                 <img 
                   src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
@@ -290,7 +339,7 @@ const Home = () => {
               <Link to="/services" className="service-panel-btn">Discover</Link>
             </div>
 
-            <div className="service-panel">
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '200ms' }}>
               <div className="service-panel-image">
                 <img 
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
@@ -305,7 +354,7 @@ const Home = () => {
               <Link to="/services" className="service-panel-btn">Discover</Link>
             </div>
 
-            <div className="service-panel">
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '280ms' }}>
               <div className="service-panel-image">
                 <img 
                   src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
@@ -324,7 +373,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="testimonials-section">
+      <section className="testimonials-section reveal-on-scroll">
         <div className="container">
           <h2 className="section-title">Testimonies of Healing</h2>
           <TestimonialsCarousel />
@@ -340,7 +389,7 @@ const Home = () => {
       {/* Get Involved CTA */}
       <section className="cta-section">
         <div className="container">
-          <div className="cta-header">
+          <div className="cta-header reveal-on-scroll">
             <h2 className="section-title">Get Involved</h2>
             <p className="cta-subtitle">
               Partner with us to bring healing and restoration to individuals, families, and communities.
@@ -348,7 +397,14 @@ const Home = () => {
           </div>
           
           <div className="cta-cards">
-            <div className="cta-card">
+            <div
+              className="cta-card reveal-on-scroll"
+              style={{ '--delay': '40ms' }}
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate('/get-involved')}
+              onKeyDown={(e) => handleKeyActivate(e, () => navigate('/get-involved'))}
+            >
               <div className="cta-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7564 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.0621 22.0329 6.39464C21.7564 5.72718 21.351 5.12075 20.84 4.61Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.1"/>
@@ -363,7 +419,14 @@ const Home = () => {
               </Link>
             </div>
 
-            <div className="cta-card">
+            <div
+              className="cta-card reveal-on-scroll"
+              style={{ '--delay': '120ms' }}
+              role="button"
+              tabIndex={0}
+              onClick={handlePartnerClick}
+              onKeyDown={(e) => handleKeyActivate(e, handlePartnerClick)}
+            >
               <div className="cta-card-icon">
                 <img src="/handshakeWhite.png" alt="Handshake" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
@@ -373,16 +436,20 @@ const Home = () => {
               </p>
               <Link to="/#contact" onClick={(e) => {
                 e.preventDefault();
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                handlePartnerClick();
               }} className="cta-card-btn">
                 Partner with Us
               </Link>
             </div>
 
-            <div className="cta-card">
+            <div
+              className="cta-card reveal-on-scroll"
+              style={{ '--delay': '200ms' }}
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate('/get-involved')}
+              onKeyDown={(e) => handleKeyActivate(e, () => navigate('/get-involved'))}
+            >
               <div className="cta-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -413,7 +480,7 @@ const Home = () => {
           />
         </div>
         <div className="container">
-          <div className="home-contact-content">
+          <div className="home-contact-content reveal-on-scroll">
             <div className="home-contact-header">
               <h2 className="home-contact-title">Get In Touch</h2>
               <p className="home-contact-subtitle">

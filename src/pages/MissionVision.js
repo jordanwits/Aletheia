@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './MissionVision.css';
 
 const MissionVision = () => {
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   return (
     <div className="mission-vision">
       {/* Hero Section */}
@@ -16,7 +41,7 @@ const MissionVision = () => {
         </div>
 
         <div className="container mission-vision-hero-content">
-          <div className="mission-vision-hero-text">
+          <div className="mission-vision-hero-text reveal-on-scroll" data-animate="zoom">
             <p className="mission-vision-eyebrow">Mission &amp; Vision</p>
             <h1 className="mission-vision-hero-title">Why Aletheia Exists</h1>
             <p className="mission-vision-hero-subtitle">
@@ -38,14 +63,14 @@ const MissionVision = () => {
       <section className="mission-section" id="mission">
         <div className="container">
           <div className="mission-layout">
-            <div className="mission-image-wrapper">
+            <div className="mission-image-wrapper reveal-on-scroll" data-animate="left">
               <img 
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Mission"
                 className="mission-image"
               />
             </div>
-            <div className="mission-content">
+            <div className="mission-content reveal-on-scroll" data-animate="right" style={{ '--delay': '80ms' }}>
               <h2 className="section-heading">Our Mission</h2>
               <p className="mission-text">
                 Aletheia exists to guide individuals toward complete healing by addressing the spiritual and emotional foundations of well-being through Christ. We equip and empower people to experience divine health and live in the abundant life God intended.
@@ -59,13 +84,13 @@ const MissionVision = () => {
       <section className="vision-section">
         <div className="container">
           <div className="vision-layout">
-            <div className="vision-content">
+            <div className="vision-content reveal-on-scroll" data-animate="left">
               <h2 className="section-heading">Our Vision</h2>
               <p className="vision-text">
                 To see people across the world walk in Heaven's model of health—healed physically, emotionally, and spiritually—by discovering the truth that sets them free. We envision restoration reaching families, workplaces, prisons, and entire communities as God's people learn to live from His truth and His presence.
               </p>
             </div>
-            <div className="vision-image-wrapper">
+            <div className="vision-image-wrapper reveal-on-scroll" data-animate="right" style={{ '--delay': '80ms' }}>
               <img 
                 src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Vision"
@@ -80,7 +105,7 @@ const MissionVision = () => {
       <section className="beliefs-section" id="beliefs">
         <div className="container">
           <div className="beliefs-content">
-            <div className="beliefs-header">
+            <div className="beliefs-header reveal-on-scroll">
               <h2 className="section-heading">Our Beliefs</h2>
               <p className="beliefs-intro">
                 We believe that complete healing is God's promise and is made available through the finished work of Jesus Christ. Healing is not earned—it is received through faith, truth, renewed beliefs, and abiding in Him.
@@ -88,7 +113,7 @@ const MissionVision = () => {
             </div>
             
             <div className="beliefs-list">
-              <div className="belief-item">
+              <div className="belief-item reveal-on-scroll" style={{ '--delay': '0ms' }}>
                 <div className="belief-number-badge">1</div>
                 <div className="belief-content-wrapper">
                   <h3 className="belief-title">Healing Is God's Intent</h3>
@@ -98,7 +123,7 @@ const MissionVision = () => {
                 </div>
               </div>
 
-              <div className="belief-item">
+              <div className="belief-item reveal-on-scroll" style={{ '--delay': '80ms' }}>
                 <div className="belief-number-badge">2</div>
                 <div className="belief-content-wrapper">
                   <h3 className="belief-title">Truth Renews and Transforms</h3>
@@ -108,7 +133,7 @@ const MissionVision = () => {
                 </div>
               </div>
 
-              <div className="belief-item">
+              <div className="belief-item reveal-on-scroll" style={{ '--delay': '160ms' }}>
                 <div className="belief-number-badge">3</div>
                 <div className="belief-content-wrapper">
                   <h3 className="belief-title">Stewardship Is an Act of Worship</h3>
@@ -118,7 +143,7 @@ const MissionVision = () => {
                 </div>
               </div>
 
-              <div className="belief-item">
+              <div className="belief-item reveal-on-scroll" style={{ '--delay': '240ms' }}>
                 <div className="belief-number-badge">4</div>
                 <div className="belief-content-wrapper">
                   <h3 className="belief-title">Words and Thoughts Carry Power</h3>
@@ -128,7 +153,7 @@ const MissionVision = () => {
                 </div>
               </div>
 
-              <div className="belief-item">
+              <div className="belief-item reveal-on-scroll" style={{ '--delay': '320ms' }}>
                 <div className="belief-number-badge">5</div>
                 <div className="belief-content-wrapper">
                   <h3 className="belief-title">Healing Is Personal and Spirit-Led</h3>
@@ -138,7 +163,7 @@ const MissionVision = () => {
                 </div>
               </div>
 
-              <div className="belief-item">
+              <div className="belief-item reveal-on-scroll" style={{ '--delay': '400ms' }}>
                 <div className="belief-number-badge">6</div>
                 <div className="belief-content-wrapper">
                   <h3 className="belief-title">Union With Christ Is Our Source of Life</h3>
@@ -156,33 +181,42 @@ const MissionVision = () => {
       <section className="scriptures-section">
         <div className="scriptures-background">
           <img 
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+            src="/VersesBkg.jpg" 
             alt="Scriptures background"
             className="scriptures-bg-image"
           />
           <div className="scriptures-overlay"></div>
         </div>
         <div className="container">
-          <h2 className="scriptures-heading">Scriptures We Build On</h2>
-          <div className="scriptures-list">
-            <div className="scripture-card">
-              <div className="scripture-icon">"</div>
-              <p className="scripture-text">
-                And you shall know the truth, and the truth shall make you free.
+          <div className="scriptures-header reveal-on-scroll">
+            <p className="scriptures-eyebrow">Scripture Foundation</p>
+            <h2 className="scriptures-heading">Scriptures We Build On</h2>
+            <p className="scriptures-subtitle">
+              Truths we return to as we teach complete healing—freedom, renewal, and restoration for every person.
+            </p>
+          </div>
+
+          <div className="scriptures-grid">
+            <div className="scripture-card reveal-on-scroll" style={{ '--delay': '0ms', '--duration': '1.35s' }}>
+              <div className="scripture-pill">Freedom</div>
+              <p className="scripture-quote">
+                “And you shall know the truth, and the truth shall make you free.”
               </p>
               <p className="scripture-reference">John 8:32</p>
             </div>
-            <div className="scripture-card">
-              <div className="scripture-icon">"</div>
-              <p className="scripture-text">
-                Be transformed by the renewing of your mind…
+
+            <div className="scripture-card reveal-on-scroll" style={{ '--delay': '700ms', '--duration': '1.35s' }}>
+              <div className="scripture-pill">Renewal</div>
+              <p className="scripture-quote">
+                “Be transformed by the renewing of your mind…”
               </p>
               <p className="scripture-reference">Romans 12:2</p>
             </div>
-            <div className="scripture-card">
-              <div className="scripture-icon">"</div>
-              <p className="scripture-text">
-                The leaves of the Tree are for the healing of the nations.
+
+            <div className="scripture-card reveal-on-scroll" style={{ '--delay': '1400ms', '--duration': '1.35s' }}>
+              <div className="scripture-pill">Healing</div>
+              <p className="scripture-quote">
+                “The leaves of the Tree are for the healing of the nations.”
               </p>
               <p className="scripture-reference">Revelation 22:2</p>
             </div>
@@ -194,14 +228,14 @@ const MissionVision = () => {
       <section className="story-section">
         <div className="container">
           <div className="story-layout">
-            <div className="story-image-wrapper">
+            <div className="story-image-wrapper reveal-on-scroll" data-animate="left">
               <img 
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Aletheia story"
                 className="story-image"
               />
             </div>
-            <div className="story-content">
+            <div className="story-content reveal-on-scroll" data-animate="right" style={{ '--delay': '80ms' }}>
               <h2 className="section-heading">The Story of Aletheia</h2>
               <p className="story-text">
                 Aletheia was born from the conviction that complete healing is part of God's design and that the truth of God's word—not man made systems—is what sets people free. After decades in the healthcare world and witnessing how often people are cycled through treatments without addressing the spiritual and emotional roots of their suffering, we saw the need for a Christ-centered approach to health. Aletheia exists to help individuals hear God's voice, renew their beliefs with truth, and step into the healing and restoration that Christ has already provided—bringing this message to individuals, families, workplaces, and even prisons.
@@ -216,11 +250,11 @@ const MissionVision = () => {
         <div 
           className="founder-wrapper"
           style={{
-            backgroundImage: `url('/BioBkg.avif')`
+            backgroundImage: `url('/BioBkg.jpg')`
           }}
         >
           <div className="founder-shell">
-            <div className="founder-copy">
+            <div className="founder-copy reveal-on-scroll" data-animate="left">
               <header className="founder-header">
                 <div className="founder-kicker">MEET OUR FOUNDER</div>
                 <h1 className="founder-title">Kate Hamilton</h1>
@@ -246,11 +280,11 @@ const MissionVision = () => {
               </div>
             </div>
 
-            <div className="founder-photo-block">
+            <div className="founder-photo-block reveal-on-scroll" data-animate="right" style={{ '--delay': '100ms' }}>
               <div className="founder-photo-card">
                 <img
-                  src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=900"
-                  alt="Founder speaking to an audience"
+                  src="/Kate Photoshoot-46--MAIN .JPG"
+                  alt="Kate Hamilton, Founder of Aletheia"
                 />
               </div>
             </div>

@@ -14,9 +14,9 @@
   padding-top: 0;
 }
 
-/* Smooth scrolling */
+/* Default scroll behavior is instant; smooth is applied selectively via JS when needed */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overflow-x: hidden;
 }
 

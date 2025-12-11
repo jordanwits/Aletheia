@@ -19,9 +19,11 @@ const OurTeam = () => {
         <div className="container">
           <div className="founder-content">
             <div className="founder-image-placeholder">
-              <div className="placeholder-box">
-                <span>Photo</span>
-              </div>
+              <img
+                src="/Kate Photoshoot-46--MAIN .JPG"
+                alt="Kate Hamilton, Founder of Aletheia"
+                className="founder-image"
+              />
             </div>
             <div className="founder-info">
               <h2 className="founder-name">Kate Hamilton</h2>

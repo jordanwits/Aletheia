@@ -118,10 +118,11 @@
 }
 
 .hero-logo-overlay {
+  --base-transform: translate(-50%, -50%);
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: var(--base-transform);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -164,10 +165,11 @@
 }
 
 .hero-text-overlay {
+  --base-transform: translateX(-50%);
   position: absolute;
   bottom: 80px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: var(--base-transform);
   text-align: center;
   z-index: 2;
   color: white;
@@ -823,22 +825,42 @@
 }
 
 .cta-card {
+  --card-lift: 0px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 40px 30px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: background 0.24s ease, box-shadow 0.24s ease, transform 0.12s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  transform: translateY(var(--card-lift));
 }
 
 .cta-card:hover {
-  transform: translateY(-8px);
+  --card-lift: -10px;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Inherit button hover when card is hovered */
+.cta-card:hover .cta-card-btn {
+  background-color: transparent;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Allow reveal transform to include card lift */
+.cta-card.reveal-on-scroll {
+  --base-transform: translateY(var(--card-lift));
+}
+
+/* Override reveal transition to keep hover lift snappy */
+.cta-card.reveal-on-scroll {
+  transition: background 0.24s ease, box-shadow 0.24s ease, transform 0.12s ease;
 }
 
 .cta-card-icon {
@@ -1224,3 +1246,49 @@
   }
 }
 
+/* Reveal on scroll animations */
+.reveal-on-scroll {
+  --reveal-x: 0;
+  --reveal-y: 26px;
+  --reveal-scale: 1;
+  opacity: 0;
+  transform: var(--base-transform, none) translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
+  transition: opacity 0.85s ease, transform 0.85s ease;
+  transition-delay: var(--delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll[data-animate="left"] {
+  --reveal-x: -28px;
+  --reveal-y: 0;
+}
+
+.reveal-on-scroll[data-animate="right"] {
+  --reveal-x: 28px;
+  --reveal-y: 0;
+}
+
+.reveal-on-scroll[data-animate="zoom"] {
+  --reveal-scale: 0.96;
+  --reveal-y: 0;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  --reveal-x: 0;
+  --reveal-y: 0;
+  --reveal-scale: 1;
+  transform: var(--base-transform, none) translate3d(0, 0, 0) scale(1);
+}
+
+.reveal-on-scroll.is-visible[data-animate="zoom"] {
+  --reveal-scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
