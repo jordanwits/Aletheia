@@ -139,8 +139,8 @@ const Home = () => {
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: '0px 0px -10% 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -5% 0px'
       }
     );
 
@@ -227,14 +227,13 @@ const Home = () => {
           
           {/* Text Overlay */}
           <div className="hero-text-overlay reveal-on-scroll" style={{ '--delay': '120ms' }}>
-            <h1 className="hero-title">THE PROMISE OF HEALING</h1>
-            <p className="hero-subtitle">ALETHEIA</p>
+            <h1 className="hero-title">COMPLETE HEALING IS GOD'S PROMISE</h1>
           </div>
         </div>
       </section>
 
       {/* Scripture Anchor */}
-      <section className="scripture-anchor-section reveal-on-scroll">
+      <section className="scripture-anchor-section reveal-on-scroll" style={{ '--delay': '-200ms' }}>
         <div className="container">
           <div className="scripture-content">
             <p className="scripture-text">

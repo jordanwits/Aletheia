@@ -132,7 +132,7 @@
 }
 
 .hero-logo {
-  max-width: 1200px;
+  max-width: 800px;
   width: auto;
   height: auto;
   display: block;
@@ -142,45 +142,48 @@
 
 @media (max-width: 1200px) {
   .hero-logo {
-    max-width: 95vw;
+    max-width: 70vw;
   }
 }
 
 @media (max-width: 968px) {
   .hero-logo {
-    max-width: 90vw;
+    max-width: 65vw;
   }
 }
 
 @media (max-width: 768px) {
   .hero-logo {
-    max-width: 85vw;
+    max-width: 60vw;
   }
 }
 
 @media (max-width: 480px) {
   .hero-logo {
-    max-width: 80vw;
+    max-width: 55vw;
   }
 }
 
 .hero-text-overlay {
-  --base-transform: translateX(-50%);
+  --base-transform: translate(-50%, 0);
   position: absolute;
-  bottom: 80px;
+  top: 62%;
   left: 50%;
   transform: var(--base-transform);
   text-align: center;
   z-index: 2;
   color: white;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .hero-title {
-  font-size: clamp(1.875rem, 1.5rem + 2.2vw, 3rem);
+  font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2.25rem);
   font-weight: var(--font-weight-light);
   letter-spacing: clamp(2px, 0.2rem, 4px);
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin: 0;
+  margin-top: 40px;
   color: white;
   font-family: 'Lustria', serif;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -204,7 +207,7 @@
   }
   
   .hero-text-overlay {
-    bottom: clamp(50px, 3.5rem, 70px);
+    top: 64%;
     padding: 0 20px;
   }
 }
@@ -216,15 +219,15 @@
   }
   
   .hero-text-overlay {
-    bottom: clamp(40px, 2.8rem, 60px);
+    top: 65%;
     padding: 0 20px;
     width: 100%;
-    left: 0;
-    transform: none;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
   
   .hero-title {
-    font-size: clamp(1.5rem, 1.25rem + 1.5vw, 2rem);
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
     letter-spacing: clamp(1px, 0.1rem, 2px);
     line-height: 1.2;
   }
