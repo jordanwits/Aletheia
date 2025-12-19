@@ -155,12 +155,45 @@ const Home = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    subscribe: false
   });
+
+  const [formStatus, setFormStatus] = useState({
+    loading: false,
+    success: false,
+    error: null
+  });
+
+  // Pre-fill subject from URL hash
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.includes('contact?subject=')) {
+      const urlParams = new URLSearchParams(hash.split('?')[1]);
+      const subject = urlParams.get('subject');
+      if (subject) {
+        setContactForm(prev => ({
+          ...prev,
+          subject: decodeURIComponent(subject)
+        }));
+        // Scroll to contact section
+        setTimeout(() => {
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      }
+    }
+  }, []);
 
   const subjectOptions = [
     { value: '', label: 'Select a subject' },
     { value: 'General Contact', label: 'General Contact' },
+    { value: 'Coaching & Discipleship', label: 'Coaching & Discipleship' },
+    { value: 'Heaven in Health Conferences', label: 'Heaven in Health Conferences' },
+    { value: 'Corporate Wellness & Culture Seminars', label: 'Corporate Wellness & Culture Seminars' },
+    { value: 'Prison Workshops & Inmate Equipping', label: 'Prison Workshops & Inmate Equipping' },
     { value: 'Give', label: 'Give' },
     { value: 'Host an Event', label: 'Host an Event' },
     { value: 'Volunteer', label: 'Volunteer' },
@@ -174,15 +207,124 @@ const Home = () => {
     });
   };
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    alert('Thank you for contacting us! We will get back to you soon.');
-    setContactForm({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    console.log('Form submitted!');
+    console.log('Form data:', contactForm);
+    
+    // Reset status
+    setFormStatus({ loading: true, success: false, error: null });
+
+    try {
+      // Step 1: Create subscriber with form endpoint
+      const subscriberPayload = {
+        api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
+        email: contactForm.email,
+        first_name: contactForm.name,
+        fields: {
+          subject: contactForm.subject || 'No subject',
+          message: contactForm.message
+        }
+      };
+      
+      console.log('Creating subscriber in Kit:', subscriberPayload);
+      
+      const response = await fetch('https://api.convertkit.com/v3/forms/8861264/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subscriberPayload),
+      });
+
+      const data = await response.json();
+      console.log('Kit API Response:', data);
+      console.log('Response status:', response.status);
+
+      if (response.ok && data.subscription) {
+        // Step 2: Apply tag based on checkbox
+        const tagId = contactForm.subscribe ? '13625660' : '13625657'; // Marketing : No Marketing
+        const tagPayload = {
+          api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
+          email: contactForm.email
+        };
+        
+        console.log(`Applying tag ${contactForm.subscribe ? 'Marketing' : 'No Marketing'} (ID: ${tagId})`);
+        
+        const tagResponse = await fetch(`https://api.convertkit.com/v3/tags/${tagId}/subscribe`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(tagPayload),
+        });
+        
+        const tagData = await tagResponse.json();
+        console.log('Tag API Response:', tagData);
+        
+        // Step 3: Send email notification to company via Web3Forms
+        const notificationPayload = {
+          access_key: 'a301a19a-2140-4497-b349-7cf081788c08',
+          subject: `New Contact Form Submission - ${contactForm.subject || 'No Subject'}`,
+          from_name: contactForm.name,
+          email: contactForm.email,
+          message: `
+Name: ${contactForm.name}
+Email: ${contactForm.email}
+Subject: ${contactForm.subject || 'Not specified'}
+Subscribed to newsletter: ${contactForm.subscribe ? 'Yes' : 'No'}
+
+Message:
+${contactForm.message}
+          `.trim()
+        };
+        
+        console.log('Sending notification email via Web3Forms');
+        
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(notificationPayload),
+        });
+        
+        // Success
+        setFormStatus({
+          loading: false,
+          success: true,
+          error: null
+        });
+        
+        // Clear form
+        setContactForm({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          subscribe: false
+        });
+
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          setFormStatus(prev => ({ ...prev, success: false }));
+        }, 5000);
+      } else {
+        // Error from Kit API
+        setFormStatus({
+          loading: false,
+          success: false,
+          error: data.message || data.error || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormStatus({
+        loading: false,
+        success: false,
+        error: 'Unable to submit the form. Please check your connection and try again.'
+      });
+    }
   };
 
   const handleGetInvolvedNav = (target) => {
@@ -212,7 +354,7 @@ const Home = () => {
             aria-hidden="true"
             onCanPlayThrough={() => videoRef.current?.play().catch(() => {})}
           >
-            <source src="/Aletheia Hero Video.mp4" type="video/mp4" />
+            <source src={`${process.env.PUBLIC_URL}/Aletheia-Hero-Video.mp4`} type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>
           
@@ -254,7 +396,7 @@ const Home = () => {
       <section className="message-section">
         <div className="message-image-side reveal-on-scroll" data-animate="left">
           <img 
-            src="/Message Section.jpg" 
+            src={`${process.env.PUBLIC_URL}/Message-Section.jpg`} 
             alt="Message section" 
             className="message-image"
           />
@@ -480,6 +622,24 @@ const Home = () => {
             </div>
             
             <form className="home-contact-form" onSubmit={handleContactSubmit}>
+              {formStatus.success && (
+                <div className="form-message form-success" role="alert">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 15L3 10L4.41 8.59L8 12.17L15.59 4.58L17 6L8 15Z" fill="currentColor"/>
+                  </svg>
+                  <span>Thank you for contacting us! We will get back to you soon.</span>
+                </div>
+              )}
+              
+              {formStatus.error && (
+                <div className="form-message form-error" role="alert">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM11 15H9V13H11V15ZM11 11H9V5H11V11Z" fill="currentColor"/>
+                  </svg>
+                  <span>{formStatus.error}</span>
+                </div>
+              )}
+
               <div className="home-form-row">
                 <div className="home-form-group">
                   <label htmlFor="home-contact-name">Name *</label>
@@ -491,6 +651,7 @@ const Home = () => {
                     onChange={handleContactChange}
                     required
                     placeholder="Your name"
+                    disabled={formStatus.loading}
                   />
                 </div>
                 <div className="home-form-group">
@@ -503,6 +664,7 @@ const Home = () => {
                     onChange={handleContactChange}
                     required
                     placeholder="your.email@example.com"
+                    disabled={formStatus.loading}
                   />
                 </div>
               </div>
@@ -527,10 +689,27 @@ const Home = () => {
                   rows="6"
                   placeholder="Tell us how we can help..."
                   required
+                  disabled={formStatus.loading}
                 />
               </div>
-              <button type="submit" className="btn btn-primary home-contact-submit">
-                Send Message
+              <div className="home-form-group home-form-checkbox">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="subscribe"
+                    checked={contactForm.subscribe}
+                    onChange={(e) => setContactForm({...contactForm, subscribe: e.target.checked})}
+                    disabled={formStatus.loading}
+                  />
+                  <span>Subscribe me to Aletheia's email updates and newsletter.</span>
+                </label>
+              </div>
+              <button 
+                type="submit" 
+                className="btn btn-primary home-contact-submit"
+                disabled={formStatus.loading}
+              >
+                {formStatus.loading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>

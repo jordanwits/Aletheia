@@ -283,7 +283,7 @@ const MissionVision = () => {
             <div className="founder-photo-block reveal-on-scroll" data-animate="right" style={{ '--delay': '100ms' }}>
               <div className="founder-photo-card">
                 <img
-                  src="/Kate Photoshoot-46--MAIN .JPG"
+                  src="/Kate-Photoshoot-46-MAIN.JPG"
                   alt="Kate Hamilton, Founder of Aletheia"
                 />
               </div>

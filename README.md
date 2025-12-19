@@ -7,7 +7,7 @@ A beautiful, modern React website for Aletheia Healing & Restoration, featuring 
 - **Responsive Design**: Mobile-first approach with beautiful UI/UX
 - **Multiple Pages**: Home, About, Beliefs, Services, Get Involved, and Contact
 - **Testimonials Carousel**: Auto-rotating testimonials with 10-second pause
-- **Contact Forms**: Speaking inquiries, prayer requests, general contact, and mailing list
+- **Kit Email Integration**: Contact form integrated with Kit (ConvertKit) API for subscriber management
 - **Modern Navigation**: Sticky header with mobile menu
 - **Beautiful Styling**: Clean, professional design with smooth animations
 
@@ -17,6 +17,7 @@ A beautiful, modern React website for Aletheia Healing & Restoration, featuring 
 
 - Node.js (v14 or higher)
 - npm or yarn
+- A Kit (ConvertKit) account with API access
 
 ### Installation
 
@@ -25,12 +26,21 @@ A beautiful, modern React website for Aletheia Healing & Restoration, featuring 
 npm install
 ```
 
-2. Start the development server:
+2. Set up Kit email integration:
+   - Follow the instructions in `SETUP.md` to configure your Kit API key
+   - Create a `.env` file with your Kit credentials
+
+3. Start the backend server:
+```bash
+npm run server
+```
+
+4. In a separate terminal, start the React development server:
 ```bash
 npm start
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Building for Production
 
@@ -43,13 +53,17 @@ This creates an optimized production build in the `build` folder.
 ## Project Structure
 
 ```
-src/
-├── components/       # Reusable components (Header, Footer, TestimonialsCarousel)
-├── pages/           # Page components (Home, About, Beliefs, Services, etc.)
-├── App.js           # Main app component with routing
-├── App.css          # Global app styles
-├── index.js         # Entry point
-└── index.css        # Global styles and CSS variables
+├── server.js         # Express backend server for Kit API integration
+├── src/
+│   ├── components/   # Reusable components (Header, Footer, TestimonialsCarousel)
+│   ├── pages/        # Page components (Home, About, Beliefs, Services, etc.)
+│   ├── App.js        # Main app component with routing
+│   ├── App.css       # Global app styles
+│   ├── index.js      # Entry point
+│   └── index.css     # Global styles and CSS variables
+├── SETUP.md          # Kit email integration setup guide
+├── TEST_INSTRUCTIONS.md  # Quick testing guide
+└── DEPLOYMENT.md     # Production deployment guide
 ```
 
 ## Pages
@@ -77,17 +91,44 @@ All content is in the respective page components. Edit the JSX in each page file
 
 ## Technologies Used
 
+### Frontend
 - React 18
 - React Router DOM 6
 - CSS3 (Custom properties, Flexbox, Grid)
 - Google Fonts (Playfair Display, Inter)
 
+### Backend
+- Node.js
+- Express.js
+- Kit (ConvertKit) API v4
+- Axios for HTTP requests
+- CORS for cross-origin requests
+- dotenv for environment variables
+
+## Kit Email Integration
+
+The contact form is integrated with Kit (ConvertKit) to automatically add subscribers and capture form submissions.
+
+### Quick Start
+
+1. **Setup**: Follow `SETUP.md` to configure your Kit API key
+2. **Test**: Follow `TEST_INSTRUCTIONS.md` to test locally
+3. **Deploy**: Follow `DEPLOYMENT.md` for production deployment
+
+### How It Works
+
+1. User fills out the contact form on the Home page
+2. Form data is sent to the Express backend (`/api/contact`)
+3. Backend validates the data and calls the Kit API
+4. Kit adds the subscriber with custom fields (subject, message)
+5. User receives a success message
+
 ## Notes
 
-- Forms currently show alerts on submit. Connect to your backend API for actual form handling.
-- Update the Zeffy donation link with your actual donation URL.
-- Update WhatsApp community link with your actual group link.
-- Add your actual video URL to the hero section when ready.
+- Contact form is fully integrated with Kit email management
+- Update the Zeffy donation link with your actual donation URL
+- Update WhatsApp community link with your actual group link
+- Never commit the `.env` file to version control
 
 ## License
 

@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import './OurTeam.css';
 
-const teamMembers = [
-  { name: 'Alexandra Caldow', role: 'Board Member', photo: '/Alexandra Caldow.png' },
-  { name: 'Cindy Bullis', role: 'Board Member', photo: '/Cindy Bullis.png', imageClass: 'lower-slight' },
-  { name: "Nora A'Bell", role: 'Board Member', photo: "/Nora A'Bell.jpg" },
-  { name: 'Glorious McAllister', role: 'Administrative Coordinator', photo: '/Glorious McAllister.png', imageClass: 'lift-more' },
-  { name: 'Alisa', role: 'Ministry Support Leader', photo: '/Alisa JPEG.jpg', preservePosition: true },
-  { name: 'Sarah Cooper', role: 'Ministry Support Leader', photo: '/Sarah Cooper.jpg' },
-  { name: 'Matt Pratten', role: 'Ministry Support Leader', photo: '/Matt Pratten.jpeg', preservePosition: true },
-  { name: 'Carrie Langum', role: 'Ministry Support Leader', photo: '/Carrie Langum Headshot.jpeg' },
-  { name: 'Stephen Murphy', role: 'Ministry Support Leader', photo: '/Stephen Murphy.jpeg', preservePosition: true },
+const boardMembers = [
+  { name: 'Alexandra Caldow', role: 'Board Member', photo: '/Alexandra-Caldow.png' },
+  { name: 'Cindy Bullis', role: 'Board Member', photo: '/Cindy-Bullis.png', imageClass: 'lower-slight' },
+  { name: "Nora A'Bell", role: 'Board Member', photo: "/Nora-ABell.jpg" },
+];
+
+const ministryLeaders = [
+  { name: 'Stephen Murphy', role: 'Ministry Support Leader', photo: '/Stephen-Murphy.jpeg', preservePosition: true },
+  { name: 'Sarah Cooper', role: 'Ministry Support Leader', photo: '/Sarah-Cooper.jpg' },
+  { name: 'Alisa', role: 'Ministry Support Leader', photo: '/Alisa-JPEG.jpg', preservePosition: true },
+  { name: 'Matt Pratten', role: 'Ministry Support Leader', photo: '/Matt-Pratten.jpeg', preservePosition: true },
+  { name: 'Carrie Langum', role: 'Ministry Support Leader', photo: '/Carrie-Langum-Headshot.jpeg' },
+  { name: 'Glorious McAllister', role: 'Administrative Coordinator', photo: '/Glorious-McAllister.png', imageClass: 'lift-more' },
 ];
 
 const OurTeam = () => {
@@ -45,9 +48,10 @@ const OurTeam = () => {
       <section className="team-hero">
         <div className="container">
           <div className="team-hero-text reveal-on-scroll" data-animate="zoom">
-            <h1 className="page-title">Our Team</h1>
+            <p className="team-hero-label">OUR LEADERS & TEAM</p>
+            <h1 className="page-title">The People of Aletheia</h1>
             <p className="page-subtitle" style={{ '--delay': '120ms' }}>
-              Meet the people behind Aletheia Healing & Restoration
+              Meet the leaders, staff, and partners who carry Aletheia&apos;s mission of healing and restoration.
             </p>
           </div>
         </div>
@@ -59,7 +63,7 @@ const OurTeam = () => {
           <div className="founder-content">
             <div className="founder-image-placeholder reveal-on-scroll" data-animate="left">
               <img
-                src="/Kate Photoshoot-46--MAIN .JPG"
+                src="/Kate-Photoshoot-46-MAIN.JPG"
                 alt="Kate Hamilton, Founder of Aletheia"
                 className="founder-image"
               />
@@ -90,16 +94,68 @@ const OurTeam = () => {
         </div>
       </section>
 
-      {/* Team Members Section */}
-      <section className="team-members-section">
+      {/* Board Members Section */}
+      <section className="team-members-section board-section">
+        <div className="board-background">
+          <img
+            src="/Board.jpg"
+            alt="Board Background"
+            className="board-bg-image"
+          />
+          <div className="board-overlay"></div>
+        </div>
         <div className="container">
-          <h2 className="section-title reveal-on-scroll" data-animate="zoom">Our Team</h2>
+          <h2 className="section-title reveal-on-scroll" data-animate="zoom">Board of Directors</h2>
           <p className="team-intro reveal-on-scroll" style={{ '--delay': '100ms' }}>
-            We are a dedicated team committed to bringing Heaven&apos;s healing to individuals, families, 
-            and communities through truth, stewardship, and faithful service.
+            Our Board of Directors provides governance, accountability, and strategic oversight to ensure 
+            Aletheia remains faithful to its mission and values. These leaders bring diverse professional, 
+            ministry, and organizational experience, offering wise counsel and responsible stewardship as 
+            Aletheia advances truth-centered healing and transformation in the communities and institutions 
+            we are called to serve.
           </p>
           <div className="team-grid">
-            {teamMembers.map((member, index) => (
+            {boardMembers.map((member, index) => (
+              <div
+                className="team-member-card reveal-on-scroll"
+                key={member.name}
+                data-animate={index % 2 === 0 ? 'left' : 'right'}
+                style={{ '--delay': `${index * 90}ms` }}
+              >
+                <div className="team-member-image">
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    loading="lazy"
+                    className={[
+                      member.preservePosition ? 'preserve-position' : '',
+                      member.imageClass || '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                  />
+                </div>
+                <h3 className="team-member-name">{member.name}</h3>
+                <p className="team-member-role">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ministry Support Leaders Section */}
+      <section className="team-members-section ministry-leaders-section">
+        <div className="container">
+          <h2 className="section-title reveal-on-scroll" data-animate="zoom">Ministry Support Leaders</h2>
+          <p className="team-intro reveal-on-scroll" style={{ '--delay': '100ms' }}>
+            Our Ministry Support Leaders provide spiritual oversight, leadership, and strategic support 
+            across Aletheia&apos;s programs and partnerships. Each leader is fully credentialed and equipped 
+            to serve organizations, institutions, and communities with biblical wisdom, discernment, and 
+            integrity, helping to cultivate environments where truth brings lasting transformation. Through 
+            their leadership, Aletheia advances its mission in workplaces, correctional settings, and 
+            beyond—bringing restoration, hope, and meaningful change wherever we are called to serve.
+          </p>
+          <div className="team-grid">
+            {ministryLeaders.map((member, index) => (
               <div
                 className="team-member-card reveal-on-scroll"
                 key={member.name}
