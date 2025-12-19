@@ -30,9 +30,10 @@ const GetInvolved = () => {
     };
   }, []);
 
-  const handleContactClick = (e) => {
+  const handleContactClick = (e, subject) => {
     e.preventDefault();
-    window.location.href = '/#contact';
+    const hash = subject ? `#contact?subject=${encodeURIComponent(subject)}` : '#contact';
+    window.location.href = `/${hash}`;
   };
 
   // Scroll to a card when arriving with a hash or navigation state target
@@ -78,7 +79,14 @@ const GetInvolved = () => {
         <div className="container">
           <div className="sections-grid">
             {/* Give Section */}
-            <div id="give" className="involvement-card reveal-on-scroll" style={{ '--delay': '0ms' }}>
+            <a 
+              id="give" 
+              href="https://www.zeffy.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="involvement-card reveal-on-scroll" 
+              style={{ '--delay': '0ms' }}
+            >
               <div className="card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04097 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.351 11.8792 21.7564 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.0621 22.0329 6.39464C21.7564 5.72718 21.351 5.12075 20.84 4.61Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.1"/>
@@ -86,34 +94,41 @@ const GetInvolved = () => {
               </div>
               <h2 className="card-title">Give</h2>
               <p className="card-description">
-                Your financial partnership enables us to bring healing and restoration to individuals, families, and communities.
+                Your generosity fuels our mission—supporting prison outreach, hosting Heaven-in-Healthcare gatherings, and providing scholarships for those seeking healing coaching. Every dollar helps us reach another life with the truth that restores and the hope that lasts.
               </p>
-              <a 
-                href="https://www.zeffy.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="card-cta"
-              >
+              <span className="card-cta">
                 Donate Now
-              </a>
-            </div>
+              </span>
+            </a>
 
             {/* Partner Section */}
-            <div id="partner" className="involvement-card reveal-on-scroll" style={{ '--delay': '120ms' }}>
+            <Link 
+              id="partner" 
+              to="/#contact" 
+              onClick={(e) => handleContactClick(e, 'Join Organization')} 
+              className="involvement-card reveal-on-scroll" 
+              style={{ '--delay': '120ms' }}
+            >
               <div className="card-icon">
                 <img src="/handshakeBlue.png" alt="Handshake" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <h2 className="card-title">Partner</h2>
               <p className="card-description">
-                Join us as an organization partner to bring Kingdom health principles to your community, church, or workplace.
+                Invite Aletheia to teach, speak, or lead a Heaven-in-Healthcare workshop. Together, we equip people with biblical truth, practical tools, and renewed mindsets that transform workplaces, ministries, and correctional facilities from the inside out.
               </p>
-              <Link to="/#contact" onClick={handleContactClick} className="card-cta">
+              <span className="card-cta">
                 Partner with Us
-              </Link>
-            </div>
+              </span>
+            </Link>
 
             {/* Volunteer Section */}
-            <div id="volunteer" className="involvement-card reveal-on-scroll" style={{ '--delay': '240ms' }}>
+            <Link 
+              id="volunteer" 
+              to="/#contact" 
+              onClick={(e) => handleContactClick(e, 'Volunteer')} 
+              className="involvement-card reveal-on-scroll" 
+              style={{ '--delay': '240ms' }}
+            >
               <div className="card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -124,15 +139,21 @@ const GetInvolved = () => {
               </div>
               <h2 className="card-title">Volunteer</h2>
               <p className="card-description">
-                Serve with us through prayer, volunteer work, or hosting workshops in your area. Join our prayer team or volunteer service.
+                Whether you feel called to intercede, help at events, support prison workshops, or serve behind the scenes—your "yes" becomes a catalyst for healing in others. Every volunteer plays a vital role in carrying this message of Christ's restoration to the nations.
               </p>
-              <Link to="/#contact" onClick={handleContactClick} className="card-cta">
+              <span className="card-cta">
                 Get Started
-              </Link>
-            </div>
+              </span>
+            </Link>
 
             {/* Host Workshop Section */}
-            <div id="workshop" className="involvement-card reveal-on-scroll" style={{ '--delay': '360ms' }}>
+            <Link 
+              id="workshop" 
+              to="/#contact" 
+              onClick={(e) => handleContactClick(e, 'Host an Event')} 
+              className="involvement-card reveal-on-scroll" 
+              style={{ '--delay': '360ms' }}
+            >
               <div className="card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -142,12 +163,12 @@ const GetInvolved = () => {
               </div>
               <h2 className="card-title">Host a Workshop</h2>
               <p className="card-description">
-                Bring healing education and transformation to your community. We offer workshops on biblical health and practical stewardship.
+                Open your doors to transformation! By hosting a Heaven-in-Healthcare workshop or speaking event, you create space for your community to encounter God's design for wholeness. We'll bring the teaching, tools, and heart—you bring the people ready for breakthrough.
               </p>
-              <Link to="/#contact" onClick={handleContactClick} className="card-cta">
+              <span className="card-cta">
                 Request a Workshop
-              </Link>
-            </div>
+              </span>
+            </Link>
           </div>
         </div>
       </section>
