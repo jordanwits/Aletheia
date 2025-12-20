@@ -97,6 +97,13 @@ const Header = () => {
               Our Team
             </Link>
             <Link 
+              to="/give" 
+              className={isActive('/give') ? 'active' : ''}
+              onClick={closeMenu}
+            >
+              Give
+            </Link>
+            <Link 
               to="/#contact" 
               onClick={handleContactClick}
             >

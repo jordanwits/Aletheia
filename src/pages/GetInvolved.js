@@ -79,11 +79,9 @@ const GetInvolved = () => {
         <div className="container">
           <div className="sections-grid">
             {/* Give Section */}
-            <a 
+            <Link 
               id="give" 
-              href="https://www.zeffy.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              to="/give"
               className="involvement-card reveal-on-scroll" 
               style={{ '--delay': '0ms' }}
             >
@@ -99,7 +97,7 @@ const GetInvolved = () => {
               <span className="card-cta">
                 Donate Now
               </span>
-            </a>
+            </Link>
 
             {/* Partner Section */}
             <Link 

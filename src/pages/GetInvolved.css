@@ -9,7 +9,7 @@
 .get-involved-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .page-title {
-  font-size: var(--font-size-5xl);
+  font-size: var(--font-size-6xl);
   margin-bottom: 20px;
   color: white;
   font-family: 'Figtree', sans-serif;
@@ -32,9 +32,9 @@
 }
 
 .page-subtitle {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   opacity: 0.95;
-  line-height: 1.6;
+  line-height: 1.8;
   font-family: 'Lustria', serif;
 }
 

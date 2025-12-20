@@ -16,15 +16,15 @@ const testimonials = [
   },
   {
     id: 3,
-    title: "Prevented Hysterectomy",
-    text: "I was told I needed immediate organ-removal surgery. After following the right testing guidance from Gold Health, doctors found the true root cause—and no longer recommended surgery.",
-    author: "Sarah"
-  },
-  {
-    id: 4,
     title: "Lost 30 Pounds + Life Transformation",
     text: "I'm down 30 pounds and still losing. My energy is way up, pain almost gone, sleep restored, and I've come off one of my medications—with my doctor's approval.",
     author: "Doug"
+  },
+  {
+    id: 4,
+    title: "Prevented Hysterectomy",
+    text: "I was told I needed immediate organ-removal surgery. After following the right testing guidance from Gold Health, doctors found the true root cause—and no longer recommended surgery.",
+    author: "Sarah"
   },
   {
     id: 5,

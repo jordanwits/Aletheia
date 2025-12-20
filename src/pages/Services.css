@@ -2,7 +2,7 @@
 .services-hero {
   background: linear-gradient(135deg, var(--primary-color) 0%, #2d3442 100%);
   color: white;
-  padding: clamp(80px, 6rem, 120px) 20px clamp(60px, 4rem, 80px);
+  padding: clamp(60px, 5rem, 100px) 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -30,7 +30,7 @@
 .services-hero-content.reveal-on-scroll {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
 }
 
@@ -40,13 +40,13 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   font-family: 'Lustria', serif;
 }
 
 .services-hero-title {
-  font-size: clamp(2rem, 1.8rem + 2.5vw, 3.5rem);
-  margin-bottom: 25px;
+  font-size: var(--font-size-6xl);
+  margin-bottom: 20px;
   color: white;
   font-family: 'Figtree', sans-serif;
   font-weight: var(--font-weight-normal);
@@ -54,11 +54,11 @@
 }
 
 .services-hero-subtitle {
-  font-size: clamp(1rem, 0.95rem + 0.6vw, 1.375rem);
+  font-size: var(--font-size-2xl);
   opacity: 0.95;
   font-family: 'Lustria', serif;
-  line-height: 1.7;
-  max-width: 700px;
+  line-height: 1.8;
+  max-width: 800px;
   margin: 0 auto;
 }
 
