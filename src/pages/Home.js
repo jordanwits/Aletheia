@@ -350,13 +350,20 @@ ${contactForm.message}
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             aria-hidden="true"
-            poster="/NavyLogo.png"
             onCanPlayThrough={() => videoRef.current?.play().catch(() => {})}
-            onLoadedMetadata={() => {
+            onLoadedData={() => {
               if (videoRef.current) {
                 videoRef.current.play().catch(() => {});
+              }
+            }}
+            onSuspend={() => {
+              // Try to play again if suspended (low power mode)
+              if (videoRef.current) {
+                setTimeout(() => {
+                  videoRef.current?.play().catch(() => {});
+                }, 100);
               }
             }}
           >
