@@ -350,9 +350,15 @@ ${contactForm.message}
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
+            poster="/NavyLogo.png"
             onCanPlayThrough={() => videoRef.current?.play().catch(() => {})}
+            onLoadedMetadata={() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(() => {});
+              }
+            }}
           >
             <source src={`${process.env.PUBLIC_URL}/Aletheia-Hero-Video.mp4`} type="video/mp4" />
           </video>

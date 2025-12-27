@@ -48,6 +48,11 @@
   top: 0;
   left: 0;
   z-index: 0;
+  /* Performance optimizations for video */
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @media (max-width: 968px) {
@@ -92,6 +97,8 @@
     right: 0;
     margin-left: 0;
     margin-right: 0;
+    /* Reduce quality on mobile for better performance */
+    filter: brightness(1);
   }
 }
 
