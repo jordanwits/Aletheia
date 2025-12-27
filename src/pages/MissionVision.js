@@ -31,15 +31,6 @@ const MissionVision = () => {
     <div className="mission-vision">
       {/* Hero Section */}
       <section className="mission-vision-hero">
-        <div className="mission-vision-hero-media">
-          <img
-            src="/missionHero.png"
-            alt="Light shining through clouds"
-            className="mission-vision-hero-image"
-          />
-          <div className="mission-vision-hero-overlay" />
-        </div>
-
         <div className="container mission-vision-hero-content">
           <div className="mission-vision-hero-text reveal-on-scroll" data-animate="zoom">
             <p className="mission-vision-eyebrow">Mission &amp; Vision</p>
