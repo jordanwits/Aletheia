@@ -342,7 +342,11 @@ ${contactForm.message}
     <div className="home">
       {/* Hero Section */}
       <section className="hero">
-        <div className="hero-image-container">
+        <div className="hero-image-container" onClick={() => {
+          if (videoRef.current && videoRef.current.paused) {
+            videoRef.current.play().catch(() => {});
+          }
+        }}>
           <video 
             ref={videoRef}
             className="hero-image"
@@ -352,6 +356,12 @@ ${contactForm.message}
             playsInline
             preload="auto"
             aria-hidden="true"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (videoRef.current && videoRef.current.paused) {
+                videoRef.current.play().catch(() => {});
+              }
+            }}
             onCanPlayThrough={() => videoRef.current?.play().catch(() => {})}
             onLoadedData={() => {
               if (videoRef.current) {
@@ -369,19 +379,20 @@ ${contactForm.message}
           >
             <source src={`${process.env.PUBLIC_URL}/Aletheia-Hero-Video.mp4`} type="video/mp4" />
           </video>
-          <div className="hero-overlay"></div>
+          <div className="hero-overlay" style={{ pointerEvents: 'none' }}></div>
           
           {/* Logo Overlay */}
-          <div className="hero-logo-overlay reveal-on-scroll" data-animate="zoom">
+          <div className="hero-logo-overlay reveal-on-scroll" data-animate="zoom" style={{ pointerEvents: 'none' }}>
             <img 
               src="/NavyLogo.png" 
               alt="Aletheia Logo" 
               className="hero-logo"
+              style={{ pointerEvents: 'none' }}
             />
           </div>
           
           {/* Text Overlay */}
-          <div className="hero-text-overlay reveal-on-scroll" style={{ '--delay': '120ms' }}>
+          <div className="hero-text-overlay reveal-on-scroll" style={{ '--delay': '120ms', pointerEvents: 'none' }}>
             <h1 className="hero-title">COMPLETE HEALING IS GOD'S PROMISE</h1>
           </div>
         </div>
