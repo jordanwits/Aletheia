@@ -38,14 +38,6 @@ const MissionVision = () => {
             <p className="mission-vision-hero-subtitle">
               We help people encounter Christ as their source of complete healing—spirit, soul, and body.
             </p>
-            <div className="mission-vision-hero-actions">
-              <a href="#mission" className="btn btn-primary mission-vision-hero-cta">
-                Start Your Healing Journey
-              </a>
-              <a href="#beliefs" className="btn mission-vision-hero-secondary">
-                Invite Us to Speak
-              </a>
-            </div>
           </div>
         </div>
       </section>
