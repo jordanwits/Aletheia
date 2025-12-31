@@ -34,7 +34,7 @@ const Footer = () => {
             <h3>Aletheia</h3>
             <p>Healing & Restoration</p>
             <p className="footer-tagline">
-              Complete Healing is Heaven's promise. Our mission is to help you experience it.
+              Complete Healing is God's promise. Our mission is to help you experience it.
             </p>
           </div>
 
@@ -53,7 +53,6 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Connect</h4>
             <ul>
-              <li><a href="https://chat.whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp Community</a></li>
               <li><Link to="/#contact" onClick={handleContactClick}>Contact Us</Link></li>
               <li><Link to="/get-involved">Partner with Us</Link></li>
             </ul>

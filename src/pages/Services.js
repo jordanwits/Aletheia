@@ -31,10 +31,10 @@ const Services = () => {
   const services = [
     {
       title: "Coaching & Discipleship",
-      location: "Individual + Group Formats",
+      location: "Group + Community Formats",
       description: "Practical, truth-based coaching that helps individuals renew their minds, steward their health, and walk into the complete healing God has already provided. Clients gain tools, accountability, and a clear path toward long-term transformation.",
       image: "/Coaching.png",
-      features: ["One-on-one sessions", "Group coaching", "Biblical foundation", "Long-term transformation"]
+      features: ["Group coaching", "Community support", "Biblical foundation", "Long-term transformation"]
     },
     {
       title: "Heaven in Health Conferences",

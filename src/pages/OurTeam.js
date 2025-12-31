@@ -72,7 +72,7 @@ const OurTeam = () => {
               <h2 className="founder-name">Kate Hamilton</h2>
               <p className="founder-title">Founder</p>
               <p className="founder-quote">
-                "Complete Healing is Heaven's promise. Our mission is to help you experience it."
+                "Complete Healing is God's promise. Our mission is to help you experience it."
               </p>
               <div className="founder-bio">
                 <p>

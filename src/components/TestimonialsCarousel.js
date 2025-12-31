@@ -10,7 +10,7 @@ const testimonials = [
   },
   {
     id: 2,
-    title: "Retinopathy Completely Healed",
+    title: "Diabetic Retinopathy Healed",
     text: "My eye doctor said diabetic retinopathy 'never goes away'—but mine is now completely gone. He said, whatever I'm doing with Gold Health, keep it up!",
     author: "Sara"
   },

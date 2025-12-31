@@ -376,24 +376,26 @@ ${contactForm.message}
                 }, 100);
               }
             }}
+            onError={(e) => {
+              console.error('Video error:', e);
+            }}
           >
-            <source src={`${process.env.PUBLIC_URL}/Aletheia-Hero-Video.mp4`} type="video/mp4" />
+            <source src="/updated-hero-banner.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
           </video>
           <div className="hero-overlay" style={{ pointerEvents: 'none' }}></div>
           
-          {/* Logo Overlay */}
-          <div className="hero-logo-overlay reveal-on-scroll" data-animate="zoom" style={{ pointerEvents: 'none' }}>
-            <img 
-              src="/NavyLogo.png" 
-              alt="Aletheia Logo" 
-              className="hero-logo"
-              style={{ pointerEvents: 'none' }}
-            />
-          </div>
-          
           {/* Text Overlay */}
-          <div className="hero-text-overlay reveal-on-scroll" style={{ '--delay': '120ms', pointerEvents: 'none' }}>
+          <div className="hero-text-overlay" style={{ pointerEvents: 'none' }}>
             <h1 className="hero-title">COMPLETE HEALING IS GOD'S PROMISE</h1>
+            <div className="hero-cta-buttons" style={{ pointerEvents: 'auto' }}>
+              <Link to="/services" className="btn btn-primary hero-cta-btn">
+                Our Services
+              </Link>
+              <Link to="/give" className="btn btn-secondary hero-cta-btn">
+                Give Now
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -408,9 +410,9 @@ ${contactForm.message}
             <p className="scripture-reference">— Revelation 22:2</p>
             <div className="founders-heart-quote">
               <p className="founders-quote-text">
-                "Complete Healing is Heaven's promise. Our mission is to help you experience it."
+                "Complete Healing is God's promise. Our mission is to help you experience it."
               </p>
-              <p className="founders-quote-author">— Kate Hamilton</p>
+              <p className="founders-quote-author">— Kate Hamilton, Founder</p>
             </div>
           </div>
         </div>
@@ -434,7 +436,7 @@ ${contactForm.message}
                 For generations, people have looked to human systems for healing—only to end up disappointed, discouraged, or dependent. Today our world is overwhelmed by chronic illness, confusion, and costly interventions, yet true healing was never meant to come from these systems. Jesus already paid for complete healing, and Heaven still speaks a better word.
               </p>
               <p>
-                Aletheia exists to reconnect people with God as their ultimate source of health. We introduce a Kingdom model of healthcare—one rooted in truth, guided by Christ, and sustained through Spirit-led stewardship. Through renewed beliefs and practical tools, we help individuals hear His voice, receive His wisdom, and walk in the healing He has already provided.
+                Aletheia exists to reconnect people with God as their ultimate source of health and healing. We introduce a Kingdom model of healthcare—one rooted in truth, guided by Christ, and sustained through Spirit-led stewardship. Through renewed beliefs and practical tools, we help individuals hear His voice, receive His wisdom, and walk in the healing He has already provided.
               </p>
             </div>
             <Link to="/contact" className="btn btn-primary message-cta">
@@ -460,8 +462,7 @@ ${contactForm.message}
         <div className="services-layout">
           <div className="services-text-side">
             <div className="services-text-content reveal-on-scroll">
-              <p className="services-headline">SERVICES</p>
-              <h2 className="services-title">Promised Land of Healing</h2>
+              <h2 className="services-title-main">SERVICES</h2>
               <p className="services-description">
                 Our services guide you into God's design for complete healing—physically, emotionally, and spiritually. Through teaching, coaching, and activation, we help you identify root causes, align with truth, and cultivate a lifestyle that reflects Heaven's way of health.
               </p>
@@ -480,7 +481,7 @@ ${contactForm.message}
                 </div>
               </div>
               <h3 className="service-panel-title">Coaching & Discipleship</h3>
-              <p className="service-panel-location">Individual + Group Formats</p>
+              <p className="service-panel-location">Group + Community Formats</p>
               <Link to="/services" className="service-panel-btn">Discover</Link>
             </div>
 
@@ -539,9 +540,9 @@ ${contactForm.message}
           <TestimonialsCarousel />
           <div className="scripture-anchor">
             <p className="scripture-text">
-              "The leaves of the tree are for the healing of the nations."
+              "Bless the Lord, O my soul, And forget not all His benefits: Who forgives all your iniquities, Who heals all your diseases,"
             </p>
-            <p className="scripture-ref">Revelation 22:2</p>
+            <p className="scripture-ref">Psalms 103:2-3 NKJV</p>
           </div>
         </div>
       </section>
@@ -562,8 +563,8 @@ ${contactForm.message}
               style={{ '--delay': '0ms' }}
               role="button"
               tabIndex={0}
-              onClick={() => handleGetInvolvedNav('give')}
-              onKeyDown={(e) => handleKeyActivate(e, () => handleGetInvolvedNav('give'))}
+              onClick={() => navigate('/give')}
+              onKeyDown={(e) => handleKeyActivate(e, () => navigate('/give'))}
             >
               <div className="cta-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -572,9 +573,9 @@ ${contactForm.message}
               </div>
               <h3 className="cta-card-title">Give</h3>
               <p className="cta-card-text">
-                Support our mission through financial partnership and help us reach more people with healing.
+                Support our mission through financial partnership and help more people experience complete healing.
               </p>
-              <Link to="/get-involved#give" className="cta-card-btn">
+              <Link to="/give" className="cta-card-btn">
                 Donate Now
               </Link>
             </div>

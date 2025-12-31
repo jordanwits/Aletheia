@@ -1,0 +1,16 @@
+{
+  "short_name": "Aletheia",
+  "name": "Aletheia Healing & Restoration",
+  "icons": [
+    {
+      "src": "Aletheia-Icon_2560x2560_Navy_72dpi.jpg",
+      "sizes": "2560x2560",
+      "type": "image/jpeg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3e4459",
+  "background_color": "#ffffff"
+}
+
