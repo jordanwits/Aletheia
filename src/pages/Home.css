@@ -195,20 +195,19 @@
 }
 
 .hero-cta-btn.btn-secondary {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: white;
-  border-color: white;
-  border-width: 3px;
-  font-weight: var(--font-weight-bold);
-  backdrop-filter: blur(8px);
-}
-
-.hero-cta-btn.btn-secondary:hover {
   background-color: white;
   color: var(--primary-color);
   border-color: white;
+  border-width: 2px;
+  font-weight: var(--font-weight-bold);
+}
+
+.hero-cta-btn.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--primary-color);
+  border-color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
 }
 
 .hero-subtitle {
