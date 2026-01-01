@@ -31,7 +31,10 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>Aletheia</h3>
+            <div className="footer-logo">
+              <img src="/Aletheia-Icon_100x100_White_72dpi.png" alt="Aletheia Icon" className="footer-icon" />
+              <h3>Aletheia</h3>
+            </div>
             <p>Healing & Restoration</p>
             <p className="footer-tagline">
               Complete Healing is God's promise. Our mission is to help you experience it.
@@ -54,6 +57,7 @@ const Footer = () => {
             <h4>Connect</h4>
             <ul>
               <li><Link to="/#contact" onClick={handleContactClick}>Contact Us</Link></li>
+              <li><a href="mailto:info@aletheialife.org">info@aletheialife.org</a></li>
               <li><Link to="/get-involved">Partner with Us</Link></li>
             </ul>
           </div>

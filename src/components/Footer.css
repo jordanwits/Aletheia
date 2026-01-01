@@ -17,9 +17,22 @@
   margin-bottom: 40px;
 }
 
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .footer-section h3 {
   font-size: var(--font-size-3xl);
-  margin-bottom: 10px;
+  margin-bottom: 0;
   color: white;
 }
 
@@ -101,9 +114,14 @@
     margin-bottom: clamp(30px, 2.2rem, 40px);
   }
   
+  .footer-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
   .footer-section h3 {
     font-size: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
-    margin-bottom: 8px;
+    margin-bottom: 0;
   }
   
   .footer-section h4 {

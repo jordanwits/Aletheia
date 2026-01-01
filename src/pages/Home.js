@@ -462,7 +462,7 @@ ${contactForm.message}
         <div className="services-layout">
           <div className="services-text-side">
             <div className="services-text-content reveal-on-scroll">
-              <h2 className="services-title-main">SERVICES</h2>
+              <h2 className="services-title-main">Services</h2>
               <p className="services-description">
                 Our services guide you into God's design for complete healing—physically, emotionally, and spiritually. Through teaching, coaching, and activation, we help you identify root causes, align with truth, and cultivate a lifestyle that reflects Heaven's way of health.
               </p>
