@@ -804,6 +804,7 @@
   height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center center;
 }
 
 .mission-vision .founder-tag {
@@ -838,6 +839,10 @@
     max-width: 100%;
     aspect-ratio: 4 / 3;
   }
+
+  .mission-vision .founder-photo-card img {
+    object-position: center 5%;
+  }
 }
 
 @media (max-width: 640px) {
@@ -852,5 +857,9 @@
 
   .mission-vision .founder-photo-card {
     max-width: 100%;
+  }
+
+  .mission-vision .founder-photo-card img {
+    object-position: center 5%;
   }
 }
