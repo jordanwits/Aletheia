@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 import './Services.css';
 
 const Services = () => {
+  const location = useLocation();
+
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
 
@@ -29,9 +31,44 @@ const Services = () => {
     };
   }, []);
 
+  // Scroll to service when hash is present in URL
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      // Remove the # symbol
+      const serviceId = hash.substring(1);
+      let retryCount = 0;
+      const maxRetries = 10;
+      
+      // Wait for DOM to be ready and animations to settle
+      const scrollToService = () => {
+        const serviceElement = document.getElementById(serviceId);
+        if (serviceElement) {
+          // Calculate center position
+          const elementRect = serviceElement.getBoundingClientRect();
+          const absoluteElementTop = elementRect.top + window.pageYOffset;
+          const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+          
+          window.scrollTo({
+            top: Math.max(0, middle), // Ensure we don't scroll to negative position
+            behavior: 'smooth'
+          });
+        } else if (retryCount < maxRetries) {
+          // Retry if element not found (might still be rendering)
+          retryCount++;
+          setTimeout(scrollToService, 100);
+        }
+      };
+
+      // Initial delay to ensure DOM is ready
+      setTimeout(scrollToService, 200);
+    }
+  }, [location.hash]);
+
   const services = [
     {
       title: "Coaching & Discipleship",
+      slug: "coaching-and-discipleship",
       location: "Group + Community Formats",
       description: "Practical, truth-based coaching that helps individuals renew their minds, steward their health, and walk into the complete healing God has already provided. Clients gain tools, accountability, and a clear path toward long-term transformation.",
       image: "/Coaching.png",
@@ -39,6 +76,7 @@ const Services = () => {
     },
     {
       title: "Heaven in Health Conferences",
+      slug: "heaven-in-health-conferences",
       location: "Public Gatherings for Revelation + Healing",
       description: "Live gatherings that teach the biblical foundation for God-intended health and activate people to live it out. Attendees leave with revelation, practical steps, and the confidence to build Promised-Land \"health zones\" in their own lives and communities.",
       image: "/Conferences.jpg",
@@ -46,6 +84,7 @@ const Services = () => {
     },
     {
       title: "Corporate Wellness & Culture Seminars",
+      slug: "corporate-wellness-and-culture-seminars",
       location: "Bringing Kingdom Health to Workplaces",
       description: "On-site or virtual trainings that bring Kingdom principles into the workplace—helping teams reduce stress, strengthen health habits, and build a culture rooted in truth and stewardship. Businesses receive actionable strategies that improve wellbeing and performance.",
       image: "/Seminars.jpg",
@@ -53,6 +92,7 @@ const Services = () => {
     },
     {
       title: "Prison Workshops & Inmate Equipping",
+      slug: "prison-workshops-and-inmate-equipping",
       location: "Restoring Identity and Healing Behind Bars",
       description: "Biblically grounded workshops that restore identity, renew mindsets, and teach practical health stewardship—leading to real transformation that lasts beyond release. Inmates gain truth, tools, and stabilizing habits that dramatically reduce recidivism and create a healthier future for themselves and their families.",
       image: "/Prison.png",
@@ -85,7 +125,8 @@ const Services = () => {
         <div className="container">
           {services.map((service, index) => (
             <div 
-              key={index} 
+              key={index}
+              id={service.slug}
               className={`service-card ${index % 2 === 0 ? 'service-card-left' : 'service-card-right'} reveal-on-scroll`}
               data-animate={index % 2 === 0 ? 'left' : 'right'}
               style={{ '--delay': `${index * 140}ms` }}

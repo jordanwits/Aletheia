@@ -536,7 +536,7 @@ ${contactForm.message}
                 Aletheia exists to reconnect people with God as their ultimate source of health and healing. We introduce a Kingdom model of healthcare—one rooted in truth, guided by Christ, and sustained through Spirit-led stewardship. Through renewed beliefs and practical tools, we help individuals hear His voice, receive His wisdom, and walk in the healing He has already provided.
               </p>
             </div>
-            <Link to="/contact" className="btn btn-primary message-cta">
+            <Link to="/contact?subject=General Contact" className="btn btn-primary message-cta">
               Connect with Our Team
             </Link>
           </div>
@@ -579,7 +579,7 @@ ${contactForm.message}
               </div>
               <h3 className="service-panel-title">Coaching & Discipleship</h3>
               <p className="service-panel-location">Group + Community Formats</p>
-              <Link to="/services" className="service-panel-btn">Discover</Link>
+              <Link to="/services#coaching-and-discipleship" className="service-panel-btn">Discover</Link>
             </div>
 
             <div className="service-panel reveal-on-scroll" style={{ '--delay': '120ms' }}>
@@ -594,7 +594,7 @@ ${contactForm.message}
               </div>
               <h3 className="service-panel-title">Heaven in Health Conferences</h3>
               <p className="service-panel-location">Public Gatherings for Revelation + Healing</p>
-              <Link to="/services" className="service-panel-btn">Discover</Link>
+              <Link to="/services#heaven-in-health-conferences" className="service-panel-btn">Discover</Link>
             </div>
 
             <div className="service-panel reveal-on-scroll" style={{ '--delay': '200ms' }}>
@@ -609,7 +609,7 @@ ${contactForm.message}
               </div>
               <h3 className="service-panel-title">Corporate Wellness & Culture Seminars</h3>
               <p className="service-panel-location">Bringing Kingdom Health to Workplaces</p>
-              <Link to="/services" className="service-panel-btn">Discover</Link>
+              <Link to="/services#corporate-wellness-and-culture-seminars" className="service-panel-btn">Discover</Link>
             </div>
 
             <div className="service-panel reveal-on-scroll" style={{ '--delay': '280ms' }}>
@@ -624,7 +624,7 @@ ${contactForm.message}
               </div>
               <h3 className="service-panel-title">Prison Workshops & Inmate Equipping</h3>
               <p className="service-panel-location">Restoring Identity and Healing Behind Bars</p>
-              <Link to="/services" className="service-panel-btn">Discover</Link>
+              <Link to="/services#prison-workshops-and-inmate-equipping" className="service-panel-btn">Discover</Link>
             </div>
           </div>
         </div>
