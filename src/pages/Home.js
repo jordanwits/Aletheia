@@ -195,9 +195,10 @@ const Home = () => {
     { value: 'Corporate Wellness & Culture Seminars', label: 'Corporate Wellness & Culture Seminars' },
     { value: 'Prison Workshops & Inmate Equipping', label: 'Prison Workshops & Inmate Equipping' },
     { value: 'Give', label: 'Give' },
-    { value: 'Host an Event', label: 'Host an Event' },
-    { value: 'Volunteer', label: 'Volunteer' },
-    { value: 'Join Organization', label: 'Join Organization' }
+    { value: 'Prayer Request', label: 'Prayer Request' },
+    { value: 'Submit a Testimony', label: 'Submit a Testimony' },
+    { value: 'Join the Mailing List', label: 'Join the Mailing List' },
+    { value: 'Volunteer', label: 'Volunteer' }
   ];
 
   const handleContactChange = (e) => {
@@ -205,6 +206,39 @@ const Home = () => {
       ...contactForm,
       [e.target.name]: e.target.value
     });
+  };
+
+  // Get tag IDs - returns array of tags to apply
+  const getTagsToApply = (subject, subscribe) => {
+    const tags = [];
+    
+    // Subject-specific tag mapping
+    const subjectTagMap = {
+      'General Contact': '13356253', // Website General Contact
+      'Coaching & Discipleship': '13356250', // Website Coaching & Discipleship
+      'Heaven in Health Conferences': '13839438', // Website Heaven in Health Conference
+      'Corporate Wellness & Culture Seminars': '13839442', // Website Corporate Wellness & Culture Seminars
+      'Prison Workshops & Inmate Equipping': '13839444', // Website Prison Workshops & Inmate Equipping
+      'Give': '13839446', // Website Give
+      'Prayer Request': '13356251', // Website Prayer Request
+      'Submit a Testimony': '13356259', // Website Submit a testimony
+      'Join the Mailing List': '13356258', // Website Join the Mailing List
+      'Volunteer': '13839450' // Website Volunteer
+    };
+
+    // Add subject-specific tag if subject is selected
+    if (subject && subjectTagMap[subject]) {
+      tags.push({ id: subjectTagMap[subject], name: `Website ${subject}` });
+    }
+    
+    // Always add Marketing or No Marketing tag based on subscribe checkbox
+    if (subscribe) {
+      tags.push({ id: '13625660', name: 'Marketing' });
+    } else {
+      tags.push({ id: '13625657', name: 'No Marketing' });
+    }
+    
+    return tags;
   };
 
   const handleContactSubmit = async (e) => {
@@ -216,8 +250,47 @@ const Home = () => {
     setFormStatus({ loading: true, success: false, error: null });
 
     try {
-      // Step 1: Create subscriber with form endpoint
-      const subscriberPayload = {
+      // Determine which tags to apply
+      const tagsToApply = getTagsToApply(contactForm.subject, contactForm.subscribe);
+      console.log('Tags to apply:', tagsToApply.map(t => t.name).join(', '));
+
+      // Step 1: Add to Kit based on subscribe preference
+      if (contactForm.subscribe) {
+        // SUBSCRIBED: Use form endpoint (triggers subscription and may send confirmation email)
+        const subscriberPayload = {
+          api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
+          email: contactForm.email,
+          first_name: contactForm.name,
+          fields: {
+            subject: contactForm.subject || 'No subject',
+            message: contactForm.message
+          }
+        };
+        
+        console.log('Creating SUBSCRIBED user in Kit:', subscriberPayload);
+        
+        const response = await fetch('https://api.convertkit.com/v3/forms/8861264/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(subscriberPayload),
+        });
+
+        const data = await response.json();
+        console.log('Kit Form API Response:', data);
+        console.log('Response status:', response.status);
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to subscribe to Kit');
+        }
+      } else {
+        // NOT SUBSCRIBED: Add to CRM via tag only (no subscription, no emails)
+        console.log('Adding UNSUBSCRIBED contact to Kit CRM (tag only, no emails)');
+      }
+
+      // Step 2: Apply all tags (this adds them to Kit CRM without subscribing if they didn't check the box)
+      const tagPayload = {
         api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
         email: contactForm.email,
         first_name: contactForm.name,
@@ -227,31 +300,11 @@ const Home = () => {
         }
       };
       
-      console.log('Creating subscriber in Kit:', subscriberPayload);
-      
-      const response = await fetch('https://api.convertkit.com/v3/forms/8861264/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(subscriberPayload),
-      });
-
-      const data = await response.json();
-      console.log('Kit API Response:', data);
-      console.log('Response status:', response.status);
-
-      if (response.ok && data.subscription) {
-        // Step 2: Apply tag based on checkbox
-        const tagId = contactForm.subscribe ? '13625660' : '13625657'; // Marketing : No Marketing
-        const tagPayload = {
-          api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
-          email: contactForm.email
-        };
+      // Apply each tag
+      for (const tag of tagsToApply) {
+        console.log(`Applying tag "${tag.name}" (ID: ${tag.id})`);
         
-        console.log(`Applying tag ${contactForm.subscribe ? 'Marketing' : 'No Marketing'} (ID: ${tagId})`);
-        
-        const tagResponse = await fetch(`https://api.convertkit.com/v3/tags/${tagId}/subscribe`, {
+        const tagResponse = await fetch(`https://api.convertkit.com/v3/tags/${tag.id}/subscribe`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -260,15 +313,21 @@ const Home = () => {
         });
         
         const tagData = await tagResponse.json();
-        console.log('Tag API Response:', tagData);
-        
-        // Step 3: Send email notification to company via Web3Forms
-        const notificationPayload = {
-          access_key: 'a301a19a-2140-4497-b349-7cf081788c08',
-          subject: `New Contact Form Submission - ${contactForm.subject || 'No Subject'}`,
-          from_name: contactForm.name,
-          email: contactForm.email,
-          message: `
+        console.log(`Tag "${tag.name}" API Response:`, tagData);
+
+        if (!tagResponse.ok) {
+          // Error applying tag
+          throw new Error(tagData.message || tagData.error || `Failed to apply tag "${tag.name}" in Kit`);
+        }
+      }
+
+      // Step 3: Send email notification to company via Web3Forms
+      const notificationPayload = {
+        access_key: 'a301a19a-2140-4497-b349-7cf081788c08',
+        subject: `New Contact Form Submission - ${contactForm.subject || 'No Subject'}`,
+        from_name: contactForm.name,
+        email: contactForm.email,
+        message: `
 Name: ${contactForm.name}
 Email: ${contactForm.email}
 Subject: ${contactForm.subject || 'Not specified'}
@@ -276,47 +335,41 @@ Subscribed to newsletter: ${contactForm.subscribe ? 'Yes' : 'No'}
 
 Message:
 ${contactForm.message}
-          `.trim()
-        };
-        
-        console.log('Sending notification email via Web3Forms');
-        
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(notificationPayload),
-        });
-        
-        // Success
-        setFormStatus({
-          loading: false,
-          success: true,
-          error: null
-        });
-        
-        // Clear form
-        setContactForm({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-          subscribe: false
-        });
+        `.trim()
+      };
+      
+      console.log('Sending notification email via Web3Forms');
+      
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(notificationPayload),
+      });
+      
+      // Success
+      console.log(`✅ Contact form submitted successfully! User ${contactForm.subscribe ? 'WILL' : 'WILL NOT'} receive emails.`);
+      
+      setFormStatus({
+        loading: false,
+        success: true,
+        error: null
+      });
+      
+      // Clear form
+      setContactForm({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        subscribe: false
+      });
 
-        // Auto-hide success message after 5 seconds
-        setTimeout(() => {
-          setFormStatus(prev => ({ ...prev, success: false }));
-        }, 5000);
-      } else {
-        // Error from Kit API
-        setFormStatus({
-          loading: false,
-          success: false,
-          error: data.message || data.error || 'Something went wrong. Please try again.'
-        });
-      }
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus(prev => ({ ...prev, success: false }));
+      }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
       setFormStatus({

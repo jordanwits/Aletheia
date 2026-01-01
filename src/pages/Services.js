@@ -34,7 +34,7 @@ const Services = () => {
       location: "Group + Community Formats",
       description: "Practical, truth-based coaching that helps individuals renew their minds, steward their health, and walk into the complete healing God has already provided. Clients gain tools, accountability, and a clear path toward long-term transformation.",
       image: "/Coaching.png",
-      features: ["Group coaching", "Community support", "Biblical foundation", "Long-term transformation"]
+      features: ["Group coaching", "Personalized Support", "Biblical foundation", "Long-term transformation"]
     },
     {
       title: "Heaven in Health Conferences",
@@ -68,7 +68,7 @@ const Services = () => {
             <p className="services-hero-label">OUR OFFERINGS</p>
             <h1 className="services-hero-title">Programs & Services</h1>
             <p className="services-hero-subtitle" style={{ '--delay': '120ms' }}>
-              Transformative programs designed to bring Heaven's healing into every area of life
+              Transformative programs designed to bring healing into every area of life
             </p>
           </div>
         </div>
@@ -130,7 +130,7 @@ const Services = () => {
           <div className="services-cta-content reveal-on-scroll" data-animate="zoom" style={{ '--delay': '140ms' }}>
             <h2 className="services-cta-title">Ready to Begin Your Healing Journey?</h2>
             <p className="services-cta-text">
-              Contact us to learn more about our programs and how we can support your journey to complete healing.
+              Contact us to learn more about our programs and how we can support your journey or your organization to complete healing.
             </p>
             <div className="services-cta-buttons">
               <Link to="/contact" className="btn btn-primary services-cta-btn-primary">

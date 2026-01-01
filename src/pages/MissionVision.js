@@ -36,7 +36,7 @@ const MissionVision = () => {
             <p className="mission-vision-eyebrow">Mission &amp; Vision</p>
             <h1 className="mission-vision-hero-title">Why Aletheia Exists</h1>
             <p className="mission-vision-hero-subtitle">
-              We help people encounter Christ as their source of complete healing—spirit, soul, and body.
+              We help people encounter Christ as their source of complete healing—spiritually, emotionally, and physically.
             </p>
           </div>
         </div>
@@ -70,12 +70,12 @@ const MissionVision = () => {
             <div className="vision-content reveal-on-scroll" data-animate="left">
               <h2 className="section-heading">Our Vision</h2>
               <p className="vision-text">
-                To see people across the world walk in Heaven's model of health—healed physically, emotionally, and spiritually—by discovering the truth that sets them free. We envision restoration reaching families, workplaces, prisons, and entire communities as God's people learn to live from His truth and His presence.
+                To see people across the world walk in Heaven's model of health—healed physically, emotionally, and spiritually—by discovering the truth that sets them free. We envision restoration reaching families, workplaces, prisons, and entire communities as God's children learn to live from His truth and His presence.
               </p>
             </div>
             <div className="vision-image-wrapper reveal-on-scroll" data-animate="right" style={{ '--delay': '80ms' }}>
               <img 
-                src="/OurVision.jpg" 
+                src="/Mission-and-vision-image.png"
                 alt="Vision"
                 className="vision-image"
               />
@@ -164,7 +164,7 @@ const MissionVision = () => {
       <section className="scriptures-section">
         <div className="scriptures-background">
           <img 
-            src="/VersesBkg.jpg" 
+            src="/Contact.jpg" 
             alt="Scriptures background"
             className="scriptures-bg-image"
           />
@@ -199,9 +199,9 @@ const MissionVision = () => {
             <div className="scripture-card reveal-on-scroll" style={{ '--delay': '1400ms', '--duration': '1.35s' }}>
               <div className="scripture-pill">Healing</div>
               <p className="scripture-quote">
-                “The leaves of the Tree are for the healing of the nations.”
+                "For I will restore health to you, and your wounds I will heal, declares the LORD."
               </p>
-              <p className="scripture-reference">Revelation 22:2</p>
+              <p className="scripture-reference">Jeremiah 30:17</p>
             </div>
           </div>
         </div>
@@ -213,15 +213,18 @@ const MissionVision = () => {
           <div className="story-layout">
             <div className="story-image-wrapper reveal-on-scroll" data-animate="left">
               <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="/Aletheia-Icon_2560x2560_Navy_72dpi.jpg" 
                 alt="Aletheia story"
-                className="story-image"
+                className="story-image story-icon"
               />
             </div>
             <div className="story-content reveal-on-scroll" data-animate="right" style={{ '--delay': '80ms' }}>
               <h2 className="section-heading">The Story of Aletheia</h2>
               <p className="story-text">
-                Aletheia was born from the conviction that complete healing is part of God's design and that the truth of God's word—not man made systems—is what sets people free. After decades in the healthcare world and witnessing how often people are cycled through treatments without addressing the spiritual and emotional roots of their suffering, we saw the need for a Christ-centered approach to health. Aletheia exists to help individuals hear God's voice, renew their beliefs with truth, and step into the healing and restoration that Christ has already provided—bringing this message to individuals, families, workplaces, and even prisons.
+                "Aletheia" (ἀλήθεια) is the biblical Greek word meaning "TRUTH". Aletheia, pronounced (uh-LEE-thee-uh), at its root means "that which is no longer hidden"—truth that has been revealed, uncovered, and brought into the light. In Scripture, it describes truth as something God discloses, not something humans merely discover. It's the TRUTH that brings light into darkness and sets people free. Light overcoming darkness. Truth exposes lies, deception, and darkness so freedom and restoration can occur (Ephesians 5:13).
+              </p>
+              <p className="story-text">
+                Aletheia was born from the conviction that complete healing is part of God's design and that the truth of God's word—not man-made systems—is what sets people free. After decades in the healthcare world and witnessing how often people are cycled through treatments without addressing the spiritual and emotional roots of their suffering, we saw the need for a Christ-centered approach to health. Aletheia exists to help individuals hear God's voice, renew their beliefs with truth, and step into the healing and restoration that Christ has already provided—bringing this message to individuals, families, workplaces, and even prisons.
               </p>
             </div>
           </div>
@@ -266,7 +269,7 @@ const MissionVision = () => {
             <div className="founder-photo-block reveal-on-scroll" data-animate="right" style={{ '--delay': '100ms' }}>
               <div className="founder-photo-card">
                 <img
-                  src="/Kate-Photoshoot-46-MAIN.JPG"
+                  src="/thumbnail-Kate-Photoshoot-72.jpg"
                   alt="Kate Hamilton, Founder of Aletheia"
                 />
               </div>

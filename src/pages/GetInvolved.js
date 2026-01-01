@@ -92,7 +92,7 @@ const GetInvolved = () => {
               </div>
               <h2 className="card-title">Give</h2>
               <p className="card-description">
-                Your generosity fuels our mission—supporting prison outreach, hosting Heaven-in-Healthcare gatherings, and providing scholarships for those seeking healing coaching. Every dollar helps us reach another life with the truth that restores and the hope that lasts.
+                Your generosity fuels our mission—supporting prison outreach, hosting Heaven-in-Healthcare gatherings, and providing scholarships for those seeking health coaching and discipleship. Every dollar helps us reach another life with the truth that restores and the hope that lasts.
               </p>
               <span className="card-cta">
                 Donate Now
@@ -103,7 +103,7 @@ const GetInvolved = () => {
             <Link 
               id="partner" 
               to="/#contact" 
-              onClick={(e) => handleContactClick(e, 'Join Organization')} 
+              onClick={(e) => handleContactClick(e, 'General Contact')} 
               className="involvement-card reveal-on-scroll" 
               style={{ '--delay': '120ms' }}
             >
@@ -112,7 +112,7 @@ const GetInvolved = () => {
               </div>
               <h2 className="card-title">Partner</h2>
               <p className="card-description">
-                Invite Aletheia to teach, speak, or lead a Heaven-in-Healthcare workshop. Together, we equip people with biblical truth, practical tools, and renewed mindsets that transform workplaces, ministries, and correctional facilities from the inside out.
+                Invite Aletheia leaders to teach, speak, or lead a Heaven-in-Healthcare workshop. Together, we equip people with biblical truth, practical tools, and renewed mindsets that transform workplaces, ministries, and correctional facilities from the inside out.
               </p>
               <span className="card-cta">
                 Partner with Us
@@ -148,7 +148,7 @@ const GetInvolved = () => {
             <Link 
               id="workshop" 
               to="/#contact" 
-              onClick={(e) => handleContactClick(e, 'Host an Event')} 
+              onClick={(e) => handleContactClick(e, 'General Contact')} 
               className="involvement-card reveal-on-scroll" 
               style={{ '--delay': '360ms' }}
             >

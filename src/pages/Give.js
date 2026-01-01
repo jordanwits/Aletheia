@@ -45,6 +45,17 @@ const Give = () => {
       {/* Donation Form Section */}
       <section className="give-form-section">
         <div className="container">
+          <div className="give-intro-text reveal-on-scroll" style={{ '--delay': '100ms' }}>
+            <p>
+              Together, we're building "Promised Land Health Zones" across the world—places where Heaven's way of living becomes normal and complete healing is expected, not rare. Your generosity makes it possible for truth to take root in individuals, families, workplaces, and entire communities—so that health, peace, and restoration can flourish as God intended.
+            </p>
+            <p>
+              <strong>Note:</strong> We use the Zeffy platform to receive all donations as they allow 100% of your donation to go to Aletheia without transaction fees. The give box below automatically suggests an optional, additional donation to Zeffy but you can simply select "other" and type in zero in the contribution box.
+            </p>
+            <p>
+              Thank you for supporting Aletheia's mission, your contribution is invaluable.
+            </p>
+          </div>
           <div className="give-form-wrapper reveal-on-scroll" style={{ '--delay': '200ms' }}>
             <div style={{ position: 'relative', overflow: 'hidden', height: '800px', width: '100%' }}>
               <iframe 

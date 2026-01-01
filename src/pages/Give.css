@@ -49,8 +49,25 @@
 
 /* Form Section */
 .give-form-section {
-  padding: 60px 0 100px;
+  padding: 60px 20px 100px;
   background: #ffffff;
+}
+
+.give-intro-text {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-family: 'Lustria', serif;
+}
+
+.give-intro-text p {
+  margin-bottom: 20px;
+}
+
+.give-intro-text p:last-child {
+  margin-bottom: 0;
 }
 
 .give-form-wrapper {

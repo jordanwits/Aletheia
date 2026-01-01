@@ -98,7 +98,7 @@ const OurTeam = () => {
       <section className="team-members-section board-section">
         <div className="board-background">
           <img
-            src="/Board.jpg"
+            src="/Board-of-directors-backdrop.png"
             alt="Board Background"
             className="board-bg-image"
           />
