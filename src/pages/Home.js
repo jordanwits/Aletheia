@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import SEO from '../components/SEO';
 import './Home.css';
 
 const CustomDropdown = ({ id, name, value, onChange, options, placeholder }) => {
@@ -152,7 +153,8 @@ const Home = () => {
   }, []);
 
   const [contactForm, setContactForm] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     subject: '',
     message: '',
@@ -260,8 +262,9 @@ const Home = () => {
         const subscriberPayload = {
           api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
           email: contactForm.email,
-          first_name: contactForm.name,
+          first_name: contactForm.firstName,
           fields: {
+            last_name: contactForm.lastName,
             subject: contactForm.subject || 'No subject',
             message: contactForm.message
           }
@@ -293,8 +296,9 @@ const Home = () => {
       const tagPayload = {
         api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
         email: contactForm.email,
-        first_name: contactForm.name,
+        first_name: contactForm.firstName,
         fields: {
+          last_name: contactForm.lastName,
           subject: contactForm.subject || 'No subject',
           message: contactForm.message
         }
@@ -325,10 +329,10 @@ const Home = () => {
       const notificationPayload = {
         access_key: 'a301a19a-2140-4497-b349-7cf081788c08',
         subject: `New Contact Form Submission - ${contactForm.subject || 'No Subject'}`,
-        from_name: contactForm.name,
+        from_name: `${contactForm.firstName} ${contactForm.lastName}`,
         email: contactForm.email,
         message: `
-Name: ${contactForm.name}
+Name: ${contactForm.firstName} ${contactForm.lastName}
 Email: ${contactForm.email}
 Subject: ${contactForm.subject || 'Not specified'}
 Subscribed to newsletter: ${contactForm.subscribe ? 'Yes' : 'No'}
@@ -357,9 +361,18 @@ ${contactForm.message}
         error: null
       });
       
+      // Scroll to top of contact form to show success message
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      
       // Clear form
       setContactForm({
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         subject: '',
         message: '',
@@ -377,6 +390,14 @@ ${contactForm.message}
         success: false,
         error: 'Unable to submit the form. Please check your connection and try again.'
       });
+      
+      // Scroll to top of contact form to show error message
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   };
 
@@ -393,6 +414,25 @@ ${contactForm.message}
 
   return (
     <div className="home">
+      <SEO
+        title="Complete Healing is God's Promise"
+        description="Aletheia Healing & Restoration helps individuals experience complete healing by addressing spiritual and emotional foundations through Christ. Discover Heaven's model of health."
+        path="/"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Aletheia Healing & Restoration",
+          "url": "https://aletheialife.org",
+          "logo": "https://aletheialife.org/Aletheia-Icon_2560x2560_Navy_72dpi.jpg",
+          "description": "Aletheia Healing & Restoration - Complete Healing is God's promise. Our mission is to help you experience it.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@aletheialife.org",
+            "contactType": "General Contact"
+          },
+          "sameAs": []
+        }}
+      />
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-image-container" onClick={() => {
@@ -457,10 +497,14 @@ ${contactForm.message}
       <section className="scripture-anchor-section reveal-on-scroll" style={{ '--delay': '-200ms' }}>
         <div className="container">
           <div className="scripture-content">
-            <p className="scripture-text">
-              "The river was flowing in the middle of the street of the city, and on either side of the river was the Tree of Life… the leaves of the Tree are for the healing of the nations."
-            </p>
-            <p className="scripture-reference">— Revelation 22:2</p>
+            <div className="scripture-verse-block">
+              <p className="scripture-text">
+                "The river was flowing in the middle of the street of the city, and on either side of the river was the Tree of Life… the leaves of the Tree are for the healing of the nations."
+              </p>
+              <span className="verse-ref" style={{ display: 'block', color: '#657c90', fontSize: '1rem', fontFamily: 'Lustria, serif', fontWeight: '500', marginTop: '20px', textAlign: 'center' }}>
+                — Revelation 22:2
+              </span>
+            </div>
             <div className="founders-heart-quote">
               <p className="founders-quote-text">
                 "Complete Healing is God's promise. Our mission is to help you experience it."
@@ -720,31 +764,44 @@ ${contactForm.message}
 
               <div className="home-form-row">
                 <div className="home-form-group">
-                  <label htmlFor="home-contact-name">Name *</label>
+                  <label htmlFor="home-contact-firstName">First Name *</label>
                   <input
                     type="text"
-                    id="home-contact-name"
-                    name="name"
-                    value={contactForm.name}
+                    id="home-contact-firstName"
+                    name="firstName"
+                    value={contactForm.firstName}
                     onChange={handleContactChange}
                     required
-                    placeholder="Your name"
+                    placeholder="First name"
                     disabled={formStatus.loading}
                   />
                 </div>
                 <div className="home-form-group">
-                  <label htmlFor="home-contact-email">Email *</label>
+                  <label htmlFor="home-contact-lastName">Last Name *</label>
                   <input
-                    type="email"
-                    id="home-contact-email"
-                    name="email"
-                    value={contactForm.email}
+                    type="text"
+                    id="home-contact-lastName"
+                    name="lastName"
+                    value={contactForm.lastName}
                     onChange={handleContactChange}
                     required
-                    placeholder="your.email@example.com"
+                    placeholder="Last name"
                     disabled={formStatus.loading}
                   />
                 </div>
+              </div>
+              <div className="home-form-group">
+                <label htmlFor="home-contact-email">Email *</label>
+                <input
+                  type="email"
+                  id="home-contact-email"
+                  name="email"
+                  value={contactForm.email}
+                  onChange={handleContactChange}
+                  required
+                  placeholder="your.email@example.com"
+                  disabled={formStatus.loading}
+                />
               </div>
               <div className="home-form-group">
                 <label htmlFor="home-contact-subject">Subject</label>

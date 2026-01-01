@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
 import './OurTeam.css';
 
 const boardMembers = [
@@ -44,6 +45,11 @@ const OurTeam = () => {
 
   return (
     <div className="our-team">
+      <SEO
+        title="Our Team"
+        description="Meet the leaders, staff, and partners who carry Aletheia's mission of healing and restoration. Learn about founder Kate Hamilton and our board of directors."
+        path="/our-team"
+      />
       {/* Hero */}
       <section className="team-hero">
         <div className="container">

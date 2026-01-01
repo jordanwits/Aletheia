@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SEO from '../components/SEO';
 import './GetInvolved.css';
 
 const GetInvolved = () => {
@@ -61,6 +62,11 @@ const GetInvolved = () => {
 
   return (
     <div className="get-involved">
+      <SEO
+        title="Get Involved"
+        description="Partner with Aletheia to bring healing and restoration. Give to support our mission, partner with us, volunteer, or join our prayer team."
+        path="/get-involved"
+      />
       {/* Hero */}
       <section className="get-involved-hero">
         <div className="container">

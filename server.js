@@ -6,6 +6,20 @@ const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Trust proxy when behind reverse proxy (Railway, Render, etc.)
+app.set('trust proxy', true);
+
+// Canonical host redirect: www -> non-www
+app.use((req, res, next) => {
+  const host = req.get('host');
+  if (host && host.startsWith('www.')) {
+    const protocol = req.protocol || 'https';
+    const newHost = host.replace(/^www\./, '');
+    return res.redirect(301, `${protocol}://${newHost}${req.originalUrl}`);
+  }
+  next();
+});
+
 // Middleware
 app.use(express.json());
 app.use(cors({
@@ -22,13 +36,13 @@ app.get('/api/health', (req, res) => {
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
-  const { name, email, subject, message } = req.body;
+  const { firstName, lastName, email, subject, message } = req.body;
 
   // Validate required fields
-  if (!name || !email || !message) {
+  if (!firstName || !lastName || !email || !message) {
     return res.status(400).json({
       success: false,
-      message: 'Name, email, and message are required fields.'
+      message: 'First name, last name, email, and message are required fields.'
     });
   }
 
@@ -56,8 +70,9 @@ app.post('/api/contact', async (req, res) => {
     // Prepare the payload for Kit API
     const kitPayload = {
       email: email,
-      first_name: name,
+      first_name: firstName,
       fields: {
+        last_name: lastName,
         subject: subject || 'No subject provided',
         message: message
       }

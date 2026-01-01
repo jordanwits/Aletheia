@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
 import './Give.css';
 
 const Give = () => {
@@ -29,6 +30,11 @@ const Give = () => {
 
   return (
     <div className="give">
+      <SEO
+        title="Give"
+        description="Your generosity helps us bring Christ-centered healing to individuals, families, prisons, and communities. Support Aletheia's mission of complete healing and restoration."
+        path="/give"
+      />
       {/* Hero Section */}
       <section className="give-hero">
         <div className="container">

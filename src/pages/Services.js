@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import './Services.css';
 
 const Services = () => {
@@ -61,6 +62,11 @@ const Services = () => {
 
   return (
     <div className="services">
+      <SEO
+        title="Programs & Services"
+        description="Transformative programs designed to bring healing into every area of life. Coaching & discipleship, Heaven in Health conferences, corporate wellness seminars, and prison workshops."
+        path="/services"
+      />
       {/* Hero */}
       <section className="services-hero">
         <div className="container">

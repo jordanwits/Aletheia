@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
 import './MissionVision.css';
 
 const MissionVision = () => {
@@ -29,6 +30,11 @@ const MissionVision = () => {
 
   return (
     <div className="mission-vision">
+      <SEO
+        title="Our Mission & Vision"
+        description="Aletheia exists to guide individuals toward complete healing by addressing spiritual and emotional foundations through Christ. Learn about our mission to bring Heaven's model of health to the world."
+        path="/mission-vision"
+      />
       {/* Hero Section */}
       <section className="mission-vision-hero">
         <div className="container mission-vision-hero-content">
