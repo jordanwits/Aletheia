@@ -210,151 +210,36 @@ const Home = () => {
     });
   };
 
-  // Get tag IDs - returns array of tags to apply
-  const getTagsToApply = (subject, subscribe) => {
-    const tags = [];
-    
-    // Subject-specific tag mapping
-    const subjectTagMap = {
-      'General Contact': '13356253', // Website General Contact
-      'Coaching & Discipleship': '13356250', // Website Coaching & Discipleship
-      'Heaven in Health Conferences': '13839438', // Website Heaven in Health Conference
-      'Corporate Wellness & Culture Seminars': '13839442', // Website Corporate Wellness & Culture Seminars
-      'Prison Workshops & Inmate Equipping': '13839444', // Website Prison Workshops & Inmate Equipping
-      'Give': '13839446', // Website Give
-      'Prayer Request': '13356251', // Website Prayer Request
-      'Submit a Testimony': '13356259', // Website Submit a testimony
-      'Join the Mailing List': '13356258', // Website Join the Mailing List
-      'Volunteer': '13839450' // Website Volunteer
-    };
-
-    // Add subject-specific tag if subject is selected
-    if (subject && subjectTagMap[subject]) {
-      tags.push({ id: subjectTagMap[subject], name: `Website ${subject}` });
-    }
-    
-    // Always add Marketing or No Marketing tag based on subscribe checkbox
-    if (subscribe) {
-      tags.push({ id: '13625660', name: 'Marketing' });
-    } else {
-      tags.push({ id: '13625657', name: 'No Marketing' });
-    }
-    
-    return tags;
-  };
-
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted!');
-    console.log('Form data:', contactForm);
-    
+
     // Reset status
     setFormStatus({ loading: true, success: false, error: null });
 
     try {
-      // Determine which tags to apply
-      const tagsToApply = getTagsToApply(contactForm.subject, contactForm.subscribe);
-      console.log('Tags to apply:', tagsToApply.map(t => t.name).join(', '));
-
-      // Step 1: Add to Kit based on subscribe preference
-      if (contactForm.subscribe) {
-        // SUBSCRIBED: Use form endpoint (triggers subscription and may send confirmation email)
-        const subscriberPayload = {
-          api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
-          email: contactForm.email,
-          first_name: contactForm.firstName,
-          fields: {
-            last_name: contactForm.lastName,
-            subject: contactForm.subject || 'No subject',
-            message: contactForm.message
-          }
-        };
-        
-        console.log('Creating SUBSCRIBED user in Kit:', subscriberPayload);
-        
-        const response = await fetch('https://api.convertkit.com/v3/forms/8861264/subscribe', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(subscriberPayload),
-        });
-
-        const data = await response.json();
-        console.log('Kit Form API Response:', data);
-        console.log('Response status:', response.status);
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Failed to subscribe to Kit');
-        }
-      } else {
-        // NOT SUBSCRIBED: Add to CRM via tag only (no subscription, no emails)
-        console.log('Adding UNSUBSCRIBED contact to Kit CRM (tag only, no emails)');
-      }
-
-      // Step 2: Apply all tags (this adds them to Kit CRM without subscribing if they didn't check the box)
-      const tagPayload = {
-        api_key: 'xl-Lxu4xOQVCAOCh4Eiu7w',
-        email: contactForm.email,
-        first_name: contactForm.firstName,
-        fields: {
-          last_name: contactForm.lastName,
-          subject: contactForm.subject || 'No subject',
-          message: contactForm.message
-        }
-      };
-      
-      // Apply each tag
-      for (const tag of tagsToApply) {
-        console.log(`Applying tag "${tag.name}" (ID: ${tag.id})`);
-        
-        const tagResponse = await fetch(`https://api.convertkit.com/v3/tags/${tag.id}/subscribe`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(tagPayload),
-        });
-        
-        const tagData = await tagResponse.json();
-        console.log(`Tag "${tag.name}" API Response:`, tagData);
-
-        if (!tagResponse.ok) {
-          // Error applying tag
-          throw new Error(tagData.message || tagData.error || `Failed to apply tag "${tag.name}" in Kit`);
-        }
-      }
-
-      // Step 3: Send email notification to company via Web3Forms
-      const notificationPayload = {
-        access_key: 'a301a19a-2140-4497-b349-7cf081788c08',
-        subject: `New Contact Form Submission - ${contactForm.subject || 'No Subject'}`,
-        from_name: `${contactForm.firstName} ${contactForm.lastName}`,
-        email: contactForm.email,
-        message: `
-Name: ${contactForm.firstName} ${contactForm.lastName}
-Email: ${contactForm.email}
-Subject: ${contactForm.subject || 'Not specified'}
-Subscribed to newsletter: ${contactForm.subscribe ? 'Yes' : 'No'}
-
-Message:
-${contactForm.message}
-        `.trim()
-      };
-      
-      console.log('Sending notification email via Web3Forms');
-      
-      await fetch('https://api.web3forms.com/submit', {
+      // Secrets (Kit + Web3Forms keys) live server-side in the /api/contact
+      // serverless function, so they are never exposed in the browser bundle.
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(notificationPayload),
+        body: JSON.stringify({
+          firstName: contactForm.firstName,
+          lastName: contactForm.lastName,
+          email: contactForm.email,
+          subject: contactForm.subject,
+          message: contactForm.message,
+          subscribe: contactForm.subscribe,
+        }),
       });
-      
-      // Success
-      console.log(`✅ Contact form submitted successfully! User ${contactForm.subscribe ? 'WILL' : 'WILL NOT'} receive emails.`);
-      
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Failed to submit the form');
+      }
+
       setFormStatus({
         loading: false,
         success: true,
