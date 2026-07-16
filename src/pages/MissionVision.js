@@ -162,6 +162,10 @@ const MissionVision = () => {
                 </div>
               </div>
             </div>
+
+            <p className="beliefs-closing reveal-on-scroll">
+              We believe healing begins with compassion. Like the Good Samaritan, we seek to come alongside those who are hurting, offering biblical truth, practical support, and hope every step of the way.
+            </p>
           </div>
         </div>
       </section>
@@ -250,7 +254,6 @@ const MissionVision = () => {
               <header className="founder-header">
                 <div className="founder-kicker">MEET OUR FOUNDER</div>
                 <h1 className="founder-title">Kate Hamilton</h1>
-                <div className="founder-subtitle">SPEAKER &amp; INTEGRATIVE HEALTH ADVOCATE</div>
               </header>
 
               <p className="founder-body">

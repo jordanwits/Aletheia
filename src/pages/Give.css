@@ -87,6 +87,135 @@
   transform: translateY(0);
 }
 
+/* Different Ways to Give */
+.ways-to-give-banner {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #2d3442 100%);
+  padding: 36px 20px;
+  text-align: center;
+}
+
+.ways-to-give-banner-title {
+  color: white;
+  font-size: clamp(1.5rem, 1.4rem + 0.6vw, 1.875rem);
+  font-family: 'Figtree', sans-serif;
+  font-weight: var(--font-weight-normal);
+  margin: 0;
+}
+
+.ways-to-give-section {
+  background: #ffffff;
+  padding: 70px 20px 100px;
+}
+
+.ways-to-give-container {
+  max-width: 800px;
+}
+
+.way-to-give-row {
+  display: flex;
+  gap: 28px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(62, 68, 89, 0.15);
+}
+
+.way-to-give-row:first-child {
+  padding-top: 0;
+}
+
+.way-to-give-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.way-to-give-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  color: var(--primary-color);
+}
+
+.way-to-give-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.way-to-give-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.way-to-give-kicker {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-family: 'Lustria', serif;
+  margin: 0;
+}
+
+.way-to-give-title {
+  font-size: clamp(1.15rem, 1.1rem + 0.4vw, 1.375rem);
+  font-family: 'Figtree', sans-serif;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.way-to-give-body {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--text-light);
+  font-family: 'Lustria', serif;
+  margin: 0;
+}
+
+.way-to-give-body a {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-medium);
+}
+
+.way-to-give-details {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--font-size-sm);
+  color: var(--text-dark);
+  font-family: 'Lustria', serif;
+}
+
+.way-to-give-details strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: 600px) {
+  .ways-to-give-banner {
+    padding: 28px 20px;
+  }
+
+  .ways-to-give-section {
+    padding: 50px 20px 70px;
+  }
+
+  .way-to-give-row {
+    flex-direction: column;
+    gap: 14px;
+    padding: 32px 0;
+  }
+
+  .way-to-give-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 /* Reveal on Scroll Animation - matches Services page */
 .give .reveal-on-scroll {
   --reveal-x: 0;

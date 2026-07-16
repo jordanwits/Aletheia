@@ -62,7 +62,7 @@ module.exports = async function handler(req, res) {
 
   // Vercel parses JSON bodies automatically, but guard against string bodies.
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  const { firstName, lastName, email, subject, message, subscribe } = body;
+  const { firstName, lastName, email, phone, subject, message, subscribe } = body;
 
   if (!firstName || !lastName || !email || !message) {
     return res.status(400).json({
@@ -146,6 +146,7 @@ module.exports = async function handler(req, res) {
           message: `
 Name: ${firstName} ${lastName}
 Email: ${email}
+Phone: ${phone || 'Not provided'}
 Subject: ${subject || 'Not specified'}
 Subscribed to newsletter: ${subscribe ? 'Yes' : 'No'}
 

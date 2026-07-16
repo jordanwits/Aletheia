@@ -98,7 +98,7 @@ const GetInvolved = () => {
               </div>
               <h2 className="card-title">Give</h2>
               <p className="card-description">
-                Your generosity fuels our mission—supporting prison outreach, hosting Heaven-in-Healthcare gatherings, and providing scholarships for those seeking health coaching and discipleship. Every dollar helps us reach another life with the truth that restores and the hope that lasts.
+                Your generosity fuels our mission to support community outreach, prison ministry, hosting Heaven-in-healthcare gatherings and discipleship around health and healing. Every dollar helps us reach another life with the truth that restores and the hope that lasts.
               </p>
               <span className="card-cta">
                 Donate Now

@@ -9,11 +9,11 @@ const boardMembers = [
 ];
 
 const ministryLeaders = [
-  { name: 'Stephen Murphy', role: 'Ministry Support Leader', photo: '/Stephen-Murphy.jpeg', preservePosition: true },
-  { name: 'Sarah Cooper', role: 'Ministry Support Leader', photo: '/Sarah-Cooper.jpg' },
-  { name: 'Alisa', role: 'Ministry Support Leader', photo: '/Alisa-JPEG.jpg', preservePosition: true },
-  { name: 'Matt Pratten', role: 'Ministry Support Leader', photo: '/Matt-Pratten.jpeg', preservePosition: true },
-  { name: 'Carrie Langum', role: 'Ministry Support Leader', photo: '/Carrie-Langum-Headshot.jpeg' },
+  { name: 'Stephen Murphy', role: 'Ministry Leader', photo: '/Stephen-Murphy.jpeg', preservePosition: true },
+  { name: 'Sarah Cooper', role: 'Ministry Leader', photo: '/Sarah-Cooper.jpg' },
+  { name: 'Alisa', role: 'Ministry Leader', photo: '/Alisa-JPEG.jpg', preservePosition: true },
+  { name: 'Matt Pratten', role: 'Ministry Leader', photo: '/Matt-Pratten.jpeg', preservePosition: true },
+  { name: 'Carrie Langum', role: 'Ministry Leader', photo: '/Carrie-Langum-Headshot.jpeg' },
   { name: 'Glorious McAllister', role: 'Administrative Coordinator', photo: '/Glorious-McAllister.png', imageClass: 'lift-more' },
 ];
 
@@ -151,9 +151,9 @@ const OurTeam = () => {
       {/* Ministry Support Leaders Section */}
       <section className="team-members-section ministry-leaders-section">
         <div className="container">
-          <h2 className="section-title reveal-on-scroll" data-animate="zoom">Ministry Support Leaders</h2>
+          <h2 className="section-title reveal-on-scroll" data-animate="zoom">Ministry Leaders</h2>
           <p className="team-intro reveal-on-scroll" style={{ '--delay': '100ms' }}>
-            Our Ministry Support Leaders provide spiritual oversight, leadership, and strategic support 
+            Our Ministry Leaders provide spiritual oversight, leadership, and strategic support
             across Aletheia&apos;s programs and partnerships. Each leader is fully credentialed and equipped 
             to serve organizations, institutions, and communities with biblical wisdom, discernment, and 
             integrity, helping to cultivate environments where truth brings lasting transformation. Through 

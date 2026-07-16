@@ -53,6 +53,13 @@
   margin-top: 10px;
 }
 
+.footer-nonprofit-status {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 .footer-section ul {
   list-style: none;
 }

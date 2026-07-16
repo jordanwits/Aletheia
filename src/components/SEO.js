@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SITE_URL = 'https://aletheialife.org';
-const SITE_NAME = 'Aletheia Healing & Restoration';
+const SITE_NAME = 'Healing & Restoration';
 const DEFAULT_IMAGE = `${SITE_URL}/Aletheia-Horizontal_2560x1280_Navy_72dpi.jpg`;
 
 const SEO = ({

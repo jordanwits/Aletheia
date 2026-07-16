@@ -163,21 +163,26 @@
 
 /* Specific positioning for service images */
 .service-card:nth-child(1) .service-card-image {
-  /* Coaching image */
+  /* Community Outreach image */
   object-position: center center;
 }
 
 .service-card:nth-child(2) .service-card-image {
+  /* Coaching image */
+  object-position: center center;
+}
+
+.service-card:nth-child(3) .service-card-image {
   /* Conferences image */
   object-position: center 30%;
 }
 
-.service-card:nth-child(3) .service-card-image {
+.service-card:nth-child(4) .service-card-image {
   /* Seminars image */
   object-position: center 35%;
 }
 
-.service-card:nth-child(4) .service-card-image {
+.service-card:nth-child(5) .service-card-image {
   /* Prison image */
   object-position: center center;
 }

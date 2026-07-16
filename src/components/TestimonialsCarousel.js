@@ -40,8 +40,12 @@ const testimonials = [
   }
 ];
 
+const SWIPE_THRESHOLD = 50;
+
 const TestimonialsCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,9 +59,34 @@ const TestimonialsCarousel = () => {
     setCurrentIndex(index);
   };
 
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart === null || touchEnd === null) return;
+
+    const distance = touchStart - touchEnd;
+    if (distance > SWIPE_THRESHOLD) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    } else if (distance < -SWIPE_THRESHOLD) {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+    }
+  };
+
   return (
     <div className="testimonials-carousel">
-      <div className="testimonials-container">
+      <div
+        className="testimonials-container"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}

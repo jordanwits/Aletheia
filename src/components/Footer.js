@@ -39,6 +39,7 @@ const Footer = () => {
             <p className="footer-tagline">
               Complete Healing is God's promise. Our mission is to help you experience it.
             </p>
+            <p className="footer-nonprofit-status">Aletheia 501(c)(3) &amp; 508(c)(1)(A)</p>
           </div>
 
           <div className="footer-section">
@@ -64,7 +65,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Aletheia Healing & Restoration. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Aletheia. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

@@ -156,6 +156,7 @@ const Home = () => {
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     subject: '',
     message: '',
     subscribe: false
@@ -228,6 +229,7 @@ const Home = () => {
           firstName: contactForm.firstName,
           lastName: contactForm.lastName,
           email: contactForm.email,
+          phone: contactForm.phone,
           subject: contactForm.subject,
           message: contactForm.message,
           subscribe: contactForm.subscribe,
@@ -259,6 +261,7 @@ const Home = () => {
         firstName: '',
         lastName: '',
         email: '',
+        phone: '',
         subject: '',
         message: '',
         subscribe: false
@@ -418,7 +421,7 @@ const Home = () => {
                 For generations, people have looked to human systems for healing—only to end up disappointed, discouraged, or dependent. Today our world is overwhelmed by chronic illness, confusion, and costly interventions, yet true healing was never meant to come from these systems. Jesus already paid for complete healing, and Heaven still speaks a better word.
               </p>
               <p>
-                Aletheia exists to reconnect people with God as their ultimate source of health and healing. We introduce a Kingdom model of healthcare—one rooted in truth, guided by Christ, and sustained through Spirit-led stewardship. Through renewed beliefs and practical tools, we help individuals hear His voice, receive His wisdom, and walk in the healing He has already provided.
+                Aletheia is a Christ centered nonprofit that exists to reconnect people with God as their ultimate source of health and healing. We introduce a Kingdom model of healthcare—one rooted in truth, guided by Christ, and sustained through Spirit-led stewardship. Through renewed beliefs and practical tools, we help individuals hear His voice, receive His wisdom, and walk in the healing He has already provided.
               </p>
             </div>
             <Link to="/contact?subject=General Contact" className="btn btn-primary message-cta">
@@ -452,11 +455,26 @@ const Home = () => {
           </div>
           
           <div className="services-panels">
-            <div className="service-panel reveal-on-scroll" style={{ '--delay': '40ms' }}>
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '0ms' }}>
               <div className="service-panel-image">
-                <img 
-                  src="/Coaching.png" 
-                  alt="Coaching & Discipleship" 
+                <img
+                  src="/CommunityOutreach-placeholder.svg"
+                  alt="Community Outreach"
+                />
+                <div className="service-panel-description">
+                  <p>Practical, hands-on care that meets people where they are—food access, in-home visits, block parties, and health education delivered directly into the neighborhoods we serve, connecting people to local churches for lasting community and discipleship.</p>
+                </div>
+              </div>
+              <h3 className="service-panel-title">Community Outreach</h3>
+              <p className="service-panel-location">Meeting Practical Needs While Delivering Truth</p>
+              <Link to="/services#community-outreach" className="service-panel-btn">Discover</Link>
+            </div>
+
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '120ms' }}>
+              <div className="service-panel-image">
+                <img
+                  src="/Coaching.png"
+                  alt="Coaching & Discipleship"
                 />
                 <div className="service-panel-description">
                   <p>Practical, truth-based coaching that helps individuals renew their minds, steward their health, and walk into the complete healing God has already provided. Clients gain tools, accountability, and a clear path toward long-term transformation.</p>
@@ -467,11 +485,11 @@ const Home = () => {
               <Link to="/services#coaching-and-discipleship" className="service-panel-btn">Discover</Link>
             </div>
 
-            <div className="service-panel reveal-on-scroll" style={{ '--delay': '120ms' }}>
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '200ms' }}>
               <div className="service-panel-image">
-                <img 
-                  src="/Conferences.jpg" 
-                  alt="Heaven in Health Conferences" 
+                <img
+                  src="/Conferences.jpg"
+                  alt="Heaven in Health Conferences"
                 />
                 <div className="service-panel-description">
                   <p>Live gatherings that teach the biblical foundation for God-intended health and activate people to live it out. Attendees leave with revelation, practical steps, and the confidence to build Promised-Land "health zones" in their own lives and communities.</p>
@@ -482,11 +500,11 @@ const Home = () => {
               <Link to="/services#heaven-in-health-conferences" className="service-panel-btn">Discover</Link>
             </div>
 
-            <div className="service-panel reveal-on-scroll" style={{ '--delay': '200ms' }}>
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '280ms' }}>
               <div className="service-panel-image">
-                <img 
-                  src="/Seminars.jpg" 
-                  alt="Corporate Wellness" 
+                <img
+                  src="/Seminars.jpg"
+                  alt="Corporate Wellness"
                 />
                 <div className="service-panel-description">
                   <p>On-site or virtual trainings that bring Kingdom principles into the workplace—helping teams reduce stress, strengthen health habits, and build a culture rooted in truth and stewardship. Businesses receive actionable strategies that improve wellbeing and performance.</p>
@@ -497,11 +515,11 @@ const Home = () => {
               <Link to="/services#corporate-wellness-and-culture-seminars" className="service-panel-btn">Discover</Link>
             </div>
 
-            <div className="service-panel reveal-on-scroll" style={{ '--delay': '280ms' }}>
+            <div className="service-panel reveal-on-scroll" style={{ '--delay': '360ms' }}>
               <div className="service-panel-image">
-                <img 
-                  src="/Prison.png" 
-                  alt="Prison Workshops" 
+                <img
+                  src="/Prison.png"
+                  alt="Prison Workshops"
                 />
                 <div className="service-panel-description">
                   <p>Biblically grounded workshops that restore identity, renew mindsets, and teach practical health stewardship—leading to real transformation that lasts beyond release. Inmates gain truth, tools, and stabilizing habits that dramatically reduce recidivism and create a healthier future for themselves and their families.</p>
@@ -685,6 +703,18 @@ const Home = () => {
                   onChange={handleContactChange}
                   required
                   placeholder="your.email@example.com"
+                  disabled={formStatus.loading}
+                />
+              </div>
+              <div className="home-form-group">
+                <label htmlFor="home-contact-phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="home-contact-phone"
+                  name="phone"
+                  value={contactForm.phone}
+                  onChange={handleContactChange}
+                  placeholder="(555) 123-4567"
                   disabled={formStatus.loading}
                 />
               </div>
