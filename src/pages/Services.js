@@ -71,7 +71,7 @@ const Services = () => {
       slug: "community-outreach",
       location: "Meeting Practical Needs While Delivering Truth",
       description: "Practical, hands-on care that meets people where they are. Through food access, in-home visits, block parties, and community health education, Aletheia brings truth and provision directly into low-income neighborhoods across Redding and Shasta County. We connect people to local churches for lasting community and discipleship, so care doesn't end at the doorstep. It becomes a family they belong to. Every gathering and every visit is an opportunity to restore dignity, build real relationship, and point people toward the healing God has already provided.",
-      image: "/CommunityOutreach-placeholder.svg",
+      image: "/Outreach.jpg",
       features: ["Food access programs", "Block parties + community events", "Church connection + discipleship", "Community health education"]
     },
     {

@@ -193,6 +193,7 @@ const Home = () => {
   const subjectOptions = [
     { value: '', label: 'Select a subject' },
     { value: 'General Contact', label: 'General Contact' },
+    { value: 'Community Outreach', label: 'Community Outreach' },
     { value: 'Coaching & Discipleship', label: 'Coaching & Discipleship' },
     { value: 'Heaven in Health Conferences', label: 'Heaven in Health Conferences' },
     { value: 'Corporate Wellness & Culture Seminars', label: 'Corporate Wellness & Culture Seminars' },
@@ -458,8 +459,9 @@ const Home = () => {
             <div className="service-panel reveal-on-scroll" style={{ '--delay': '0ms' }}>
               <div className="service-panel-image">
                 <img
-                  src="/CommunityOutreach-placeholder.svg"
+                  src="/Outreach.jpg"
                   alt="Community Outreach"
+                  style={{ objectPosition: 'center 75%' }}
                 />
                 <div className="service-panel-description">
                   <p>Practical, hands-on care that meets people where they are—food access, in-home visits, block parties, and health education delivered directly into the neighborhoods we serve, connecting people to local churches for lasting community and discipleship.</p>
@@ -707,13 +709,14 @@ const Home = () => {
                 />
               </div>
               <div className="home-form-group">
-                <label htmlFor="home-contact-phone">Phone Number</label>
+                <label htmlFor="home-contact-phone">Phone Number *</label>
                 <input
                   type="tel"
                   id="home-contact-phone"
                   name="phone"
                   value={contactForm.phone}
                   onChange={handleContactChange}
+                  required
                   placeholder="(555) 123-4567"
                   disabled={formStatus.loading}
                 />
