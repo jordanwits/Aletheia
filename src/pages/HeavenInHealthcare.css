@@ -145,6 +145,14 @@
   margin-bottom: 14px;
 }
 
+.hih-section-lead {
+  font-family: 'Lustria', serif;
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--text-light);
+  margin-top: 6px;
+}
+
 .hih-btn {
   font-family: 'Lustria', serif;
   letter-spacing: 1px;
@@ -160,6 +168,191 @@
   color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   Challenges Affecting Your Business
+   -------------------------------------------------------------------------- */
+.hih-challenges-section {
+  padding: clamp(60px, 7vw, 100px) 20px;
+  background: linear-gradient(160deg, var(--primary-color) 0%, #2d3442 100%);
+}
+
+.hih-challenges-section .hih-section-title {
+  color: var(--bg-white);
+}
+
+.hih-challenges-section .hih-eyebrow {
+  color: var(--secondary-color);
+}
+
+.hih-challenges-section .hih-section-lead {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Editorial rows rather than boxes: a number in the gutter, hairline between. */
+.hih-challenge-list {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.hih-challenge-row {
+  display: grid;
+  grid-template-columns: minmax(64px, 108px) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 44px);
+  align-items: start;
+  padding: clamp(26px, 3.2vw, 40px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.hih-challenge-row:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.hih-challenge-index {
+  font-family: 'Figtree', sans-serif;
+  font-size: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+  font-weight: var(--font-weight-light);
+  line-height: 0.85;
+  color: var(--secondary-color);
+}
+
+.hih-challenge-title {
+  font-family: 'Figtree', sans-serif;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-normal);
+  color: var(--bg-white);
+  margin-bottom: 10px;
+}
+
+.hih-challenge-body {
+  font-family: 'Lustria', serif;
+  font-size: var(--font-size-base);
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 62ch;
+}
+
+.hih-scripture {
+  max-width: 760px;
+  margin: clamp(40px, 5vw, 64px) auto 0;
+  text-align: center;
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hih-scripture-text {
+  font-family: 'Lustria', serif;
+  font-size: var(--font-size-xl);
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 10px;
+}
+
+.hih-scripture-ref {
+  font-family: 'Figtree', sans-serif;
+  font-size: var(--font-size-sm);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+
+/* --------------------------------------------------------------------------
+   Solutions
+   -------------------------------------------------------------------------- */
+.hih-solutions-section {
+  padding: clamp(64px, 8vw, 112px) 20px;
+  /* 12% tint of --text-light: cool, so it reads apart from the sand below. */
+  background-color: #eef1f4;
+}
+
+/* A single statement band: an oversized title against one block of copy. */
+.hih-solutions-band {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(24px, 5vw, 80px);
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hih-solutions-title {
+  font-family: 'Figtree', sans-serif;
+  font-weight: var(--font-weight-light);
+  font-size: clamp(2.75rem, 2rem + 4vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: var(--primary-color);
+}
+
+.hih-solutions-copy p {
+  font-family: 'Lustria', serif;
+  font-size: var(--font-size-lg);
+  line-height: 1.9;
+  color: var(--text-light);
+}
+
+.hih-solutions-copy p + p {
+  margin-top: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Benefits to Your Organization
+   -------------------------------------------------------------------------- */
+.hih-benefits-section {
+  padding: clamp(60px, 7vw, 100px) 20px;
+  background-color: var(--bg-light);
+}
+
+/* Heading holds the left rail while the list runs down the right. */
+.hih-benefits-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+.hih-benefits-intro {
+  position: sticky;
+  /* Clears the fixed site header. */
+  top: 210px;
+}
+
+.hih-benefits-list {
+  list-style: none;
+}
+
+.hih-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-family: 'Lustria', serif;
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  color: var(--primary-color);
+  padding: clamp(13px, 1.5vw, 17px) 0;
+  border-bottom: 1px solid rgba(62, 68, 89, 0.16);
+}
+
+.hih-benefit-item:first-child {
+  border-top: 1px solid rgba(62, 68, 89, 0.16);
+}
+
+/* Filled mark, not an outline: the teal outline washed out on the sand ground. */
+.hih-benefit-mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* --------------------------------------------------------------------------
@@ -485,6 +678,24 @@
     max-width: 640px;
   }
 
+  .hih-solutions-band {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 640px;
+    gap: clamp(18px, 3vw, 28px);
+    text-align: center;
+  }
+
+  .hih-benefits-layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 640px;
+    gap: clamp(24px, 4vw, 36px);
+  }
+
+  .hih-benefits-intro {
+    position: static;
+    text-align: center;
+  }
+
   .hih-leaders-grid .hih-leader-card:last-child {
     grid-column: 1 / -1;
     max-width: 300px;
@@ -545,6 +756,15 @@
     margin-left: 16px;
     padding-left: 16px;
   }
+
+  .hih-challenge-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .hih-challenge-index {
+    line-height: 1;
+  }
 }
 
 @media (max-width: 560px) {
@@ -561,4 +781,5 @@
   .hih-lockup-divider {
     display: none;
   }
+
 }

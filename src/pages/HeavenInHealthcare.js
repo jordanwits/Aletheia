@@ -7,6 +7,39 @@ import './HeavenInHealthcare.css';
 // home page "Get in Touch" form with the subject pre-selected.
 const CONTACT_LINK = `/contact?subject=${encodeURIComponent('Heaven in Healthcare')}`;
 
+const challenges = [
+  {
+    title: 'Employee Performance',
+    body: 'Anxiety, depression, brain fog, weight gain, and unmanaged chronic illness shape the quality of your team’s work. People who do not feel well rarely bring their best thinking to the table.'
+  },
+  {
+    title: 'Unnecessary Expenses',
+    body: 'Chronically ill staff drive up insurance premiums, sick days, and turnover. Every departure carries the hidden cost of recruiting and retraining, and then the cycle starts again.'
+  },
+  {
+    title: 'Overwhelm',
+    body: 'Sedentary routines, unresolved trauma, fear, and a flood of contradictory health advice leave people stuck. Without real support, most never move past knowing that something is wrong.'
+  },
+  {
+    title: 'Dissatisfaction',
+    body: 'When health is compromised, outlook goes with it. Morale, attitude, and the capacity to find joy in the work all erode, and your people carry that home with them.'
+  }
+];
+
+const benefits = [
+  'Fewer sick days',
+  'Lower turnover, and the recruiting costs that come with it',
+  'Stronger employee retention',
+  'Less stress and less conflict across the team',
+  'Reduced healthcare and insurance costs for employer and employee',
+  'Better company morale',
+  'Improved productivity',
+  'A tax deductible investment for the employer',
+  'Healthier conflict resolution',
+  'Better quality of life for staff and leadership alike',
+  'Sowing into the people who are building and sustaining your business'
+];
+
 const caseStudySections = [
   {
     title: 'Program Description',
@@ -55,11 +88,9 @@ const leaders = [
   {
     name: 'Kate Hamilton',
     role: 'Founding Partner, Heaven in Healthcare',
-    photo: '/KateHeadshotAlt.jpg',
-    objectPosition: 'center center',
-    // Shot seated and further back than the other two; crop in on her face.
-    zoom: 1.65,
-    zoomOrigin: '50% 27%'
+    photo: '/KateHeadshotAlt.png',
+    // She sits slightly right of centre in the frame, so nudge the crop window over.
+    objectPosition: '55% center'
   },
   {
     name: 'Dr. Ben Edwards',
@@ -105,7 +136,7 @@ const HeavenInHealthcare = () => {
     <div className="heaven-in-healthcare">
       <SEO
         title="Heaven in Healthcare"
-        description="Heaven in Healthcare brings prayer, Scripture, Christian community, and the presence of God alongside excellent clinical care, and measures the results. Explore the case study and join the next phase."
+        description="Heaven in Healthcare brings prayer, Scripture, Christian community, and the presence of God alongside excellent clinical care, and measures the results. Corporate wellness for Christian employers, churches, and healthcare organizations."
         path="/heaveninhealthcare"
       />
 
@@ -132,12 +163,138 @@ const HeavenInHealthcare = () => {
             <p className="hih-hero-label">Corporate Wellness &amp; Culture Seminars</p>
             <h1 className="hih-hero-title">Heaven in Healthcare</h1>
             <p className="hih-hero-lead">
-              Modern medicine can measure almost everything about the body. Heaven in Healthcare
-              exists to find out what happens when prayer, Scripture, Christian community, and the
-              presence of God are brought alongside excellent clinical care, deliberately and
-              measured rigorously.
+              America spends more on healthcare than any nation on earth, and millions of its
+              people are still sick, anxious, and exhausted. Where the system falls short, the
+              Church has an opening. Heaven in Healthcare exists to prove what happens when the
+              presence of God is brought alongside excellent clinical care.
             </p>
             <Link to={CONTACT_LINK} className="btn btn-primary hih-btn">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Challenges */}
+      <section className="hih-challenges-section">
+        <div className="container">
+          <div className="hih-section-head reveal-on-scroll" data-animate="zoom">
+            <p className="hih-eyebrow">The Problem</p>
+            <h2 className="hih-section-title">Challenges Affecting Your Business</h2>
+            <p className="hih-section-lead">
+              Your team&apos;s health shows up in your numbers long before it shows up in a
+              benefits report. These are the pressures quietly working against your organization
+              right now.
+            </p>
+          </div>
+
+          <div className="hih-challenge-list">
+            {challenges.map((challenge, index) => (
+              <article
+                key={challenge.title}
+                className="hih-challenge-row reveal-on-scroll"
+                data-animate="left"
+                style={{ '--delay': `${index * 140}ms` }}
+              >
+                <span className="hih-challenge-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div className="hih-challenge-text">
+                  <h3 className="hih-challenge-title">{challenge.title}</h3>
+                  <p className="hih-challenge-body">{challenge.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="hih-scripture reveal-on-scroll" style={{ '--delay': '120ms' }}>
+            <p className="hih-scripture-text">
+              &ldquo;Many are the afflictions of the righteous, but the Lord delivers him out of
+              them all.&rdquo;
+            </p>
+            <p className="hih-scripture-ref">Psalm 34:19 NKJV</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions */}
+      <section className="hih-solutions-section">
+        <div className="container">
+          <div className="hih-solutions-band">
+            <div className="hih-solutions-heading reveal-on-scroll" data-animate="left">
+              <p className="hih-eyebrow">The Program</p>
+              <h2 className="hih-solutions-title">Solutions</h2>
+            </div>
+
+            <div
+              className="hih-solutions-copy reveal-on-scroll"
+              data-animate="right"
+              style={{ '--delay': '120ms' }}
+            >
+              <p>
+                Heaven in Healthcare is a corporate wellness service built around individualized,
+                hands-on health support for healing and longevity. Employees receive
+                concierge-level care with 24/6 access, frequent group sessions, and one-on-one
+                meetings, following a personalized program that meets each person where they are
+                and leads them toward great health.
+              </p>
+              <p>
+                The team behind it includes a naturopathic physician, a registered dietitian, a
+                licensed personal trainer, and health advisors, so every area of health is covered
+                by someone qualified to speak into it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="hih-benefits-section">
+        <div className="container">
+          <div className="hih-benefits-layout">
+            <div className="hih-benefits-intro reveal-on-scroll" data-animate="left">
+              <p className="hih-eyebrow">The Return</p>
+              <h2 className="hih-section-title">Benefits to Your Organization</h2>
+              <p className="hih-section-lead">
+                When your people get well, the change does not stay personal. It shows up in your
+                culture, your retention, and your bottom line.
+              </p>
+            </div>
+
+            <ul className="hih-benefits-list">
+              {benefits.map((benefit, index) => (
+                <li
+                  key={benefit}
+                  className="hih-benefit-item reveal-on-scroll"
+                  style={{ '--delay': `${index * 55}ms` }}
+                >
+                  <span className="hih-benefit-mark" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M2.5 6.2L4.9 8.6L9.5 3.6"
+                        stroke="currentColor"
+                        strokeWidth="1.9"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Mid-page CTA */}
+      <section className="hih-cta-band">
+        <div className="container">
+          <div className="hih-cta-band-inner reveal-on-scroll" data-animate="zoom">
+            <p className="hih-cta-band-text">
+              The door is open. The evidence is here. Now we need the Church to unify.
+            </p>
+            <Link to={CONTACT_LINK} className="btn hih-btn hih-btn-light">
               Contact Us
             </Link>
           </div>
@@ -207,20 +364,6 @@ const HeavenInHealthcare = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Mid-page CTA */}
-      <section className="hih-cta-band">
-        <div className="container">
-          <div className="hih-cta-band-inner reveal-on-scroll" data-animate="zoom">
-            <p className="hih-cta-band-text">
-              The door is open. The evidence is here. Now we need the Church to unify.
-            </p>
-            <Link to={CONTACT_LINK} className="btn hih-btn hih-btn-light">
-              Contact Us
-            </Link>
           </div>
         </div>
       </section>
