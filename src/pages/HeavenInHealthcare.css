@@ -93,6 +93,15 @@
   mix-blend-mode: multiply;
 }
 
+.hih-hero-label {
+  font-family: 'Lustria', serif;
+  font-size: var(--font-size-sm);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 10px;
+}
+
 .hih-hero-title {
   font-family: 'Figtree', sans-serif;
   font-weight: var(--font-weight-normal);

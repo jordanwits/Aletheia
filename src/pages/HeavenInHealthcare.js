@@ -160,6 +160,7 @@ const HeavenInHealthcare = () => {
                 className="hih-lockup-hih"
               />
             </div>
+            <p className="hih-hero-label">Corporate Wellness</p>
             <h1 className="hih-hero-title">Heaven in Healthcare</h1>
             <p className="hih-hero-lead">
               America spends more on healthcare than any nation on earth, and millions of its
