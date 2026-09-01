@@ -96,7 +96,8 @@ const Services = () => {
       location: "Bringing Kingdom Health to Workplaces",
       description: "On-site or virtual trainings that bring Kingdom principles into the workplace—helping teams reduce stress, strengthen health habits, and build a culture rooted in truth and stewardship. Businesses receive actionable strategies that improve wellbeing and performance.",
       image: "/Seminars.jpg",
-      features: ["On-site & virtual", "Team wellness", "Stress reduction", "Performance improvement"]
+      features: ["On-site & virtual", "Team wellness", "Stress reduction", "Performance improvement"],
+      page: "/heaveninhealthcare"
     },
     {
       title: "Prison Workshops & Inmate Equipping",
@@ -149,7 +150,15 @@ const Services = () => {
               <div className="service-card-content">
                 <div className="service-card-header">
                   <span className="service-card-badge">{service.location}</span>
-                  <h2 className="service-card-title">{service.title}</h2>
+                  <h2 className="service-card-title">
+                    {service.page ? (
+                      <Link to={service.page} className="service-card-title-link">
+                        {service.title}
+                      </Link>
+                    ) : (
+                      service.title
+                    )}
+                  </h2>
                 </div>
                 <p className="service-card-description">{service.description}</p>
                 <div className="service-card-features">
@@ -162,8 +171,11 @@ const Services = () => {
                     </div>
                   ))}
                 </div>
-                <Link to={`/contact?subject=${encodeURIComponent(service.title)}`} className="service-card-cta">
-                  Get Started
+                <Link
+                  to={service.page || `/contact?subject=${encodeURIComponent(service.title)}`}
+                  className="service-card-cta"
+                >
+                  {service.page ? 'Learn More' : 'Get Started'}
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>

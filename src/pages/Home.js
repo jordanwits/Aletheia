@@ -197,6 +197,7 @@ const Home = () => {
     { value: 'Coaching & Discipleship', label: 'Coaching & Discipleship' },
     { value: 'Heaven in Health Conferences', label: 'Heaven in Health Conferences' },
     { value: 'Corporate Wellness & Culture Seminars', label: 'Corporate Wellness & Culture Seminars' },
+    { value: 'Heaven in Healthcare', label: 'Heaven in Healthcare' },
     { value: 'Prison Workshops & Inmate Equipping', label: 'Prison Workshops & Inmate Equipping' },
     { value: 'Give', label: 'Give' },
     { value: 'Prayer Request', label: 'Prayer Request' },
@@ -514,7 +515,7 @@ const Home = () => {
               </div>
               <h3 className="service-panel-title">Corporate Wellness & Culture Seminars</h3>
               <p className="service-panel-location">Bringing Kingdom Health to Workplaces</p>
-              <Link to="/services#corporate-wellness-and-culture-seminars" className="service-panel-btn">Discover</Link>
+              <Link to="/heaveninhealthcare" className="service-panel-btn">Discover</Link>
             </div>
 
             <div className="service-panel reveal-on-scroll" style={{ '--delay': '360ms' }}>

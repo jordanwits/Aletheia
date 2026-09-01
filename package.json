@@ -59,7 +59,8 @@
       "/get-involved",
       "/services",
       "/our-team",
-      "/give"
+      "/give",
+      "/heaveninhealthcare"
     ],
     "minifyHtml": {
       "collapseWhitespace": false,

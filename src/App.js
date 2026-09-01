@@ -9,6 +9,7 @@ import GetInvolved from './pages/GetInvolved';
 import Services from './pages/Services';
 import OurTeam from './pages/OurTeam';
 import Give from './pages/Give';
+import HeavenInHealthcare from './pages/HeavenInHealthcare';
 import './App.css';
 
 function ContactRedirect() {
@@ -40,6 +41,7 @@ function AppLayout() {
           <Route path="/services" element={<Services />} />
           <Route path="/our-team" element={<OurTeam />} />
           <Route path="/give" element={<Give />} />
+          <Route path="/heaveninhealthcare" element={<HeavenInHealthcare />} />
           <Route path="/contact" element={<ContactRedirect />} />
         </Routes>
       </main>

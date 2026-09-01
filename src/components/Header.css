@@ -95,6 +95,27 @@
   display: block;
 }
 
+/* Heaven in Healthcare — the logo itself is the nav button */
+.nav-logo-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.nav-logo-image {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  /* Logo ships on a white background; multiply drops the box on the white bar. */
+  mix-blend-mode: multiply;
+  transition: opacity 0.3s ease;
+}
+
+.nav-logo-link:hover .nav-logo-image {
+  opacity: 0.75;
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -205,6 +226,15 @@
 
   .nav a.active::after {
     display: none;
+  }
+
+  .nav-logo-link {
+    justify-content: center;
+    padding: 8px 12px;
+  }
+
+  .nav-logo-image {
+    height: 36px;
   }
 }
 

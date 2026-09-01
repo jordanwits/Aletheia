@@ -103,11 +103,22 @@ const Header = () => {
             >
               Give
             </Link>
-            <Link 
-              to="/#contact" 
+            <Link
+              to="/#contact"
               onClick={handleContactClick}
             >
               Contact Us
+            </Link>
+            <Link
+              to="/heaveninhealthcare"
+              className={`nav-logo-link ${isActive('/heaveninhealthcare') ? 'active' : ''}`}
+              onClick={closeMenu}
+            >
+              <img
+                src="/HeavenHealthLogo.jpg"
+                alt="Heaven in Healthcare"
+                className="nav-logo-image"
+              />
             </Link>
           </nav>
         </div>
