@@ -101,7 +101,7 @@ const Give = () => {
               <ul className="way-to-give-details">
                 <li><strong>Full legal nonprofit name:</strong> Aletheia</li>
                 <li><strong>EIN number:</strong> 33-4937289</li>
-                <li><strong>Mailing address:</strong> 522 W Riverside St. Spokane, Washington 99201</li>
+                <li><strong>Mailing address:</strong> 522 W Riverside Ave Ste N Spokane, Washington 99201</li>
               </ul>
             </div>
           </div>
@@ -122,7 +122,7 @@ const Give = () => {
               </p>
               <ul className="way-to-give-details">
                 <li><strong>Payable to:</strong> Aletheia</li>
-                <li><strong>Mailing address:</strong> 522 W Riverside St. Spokane, Washington 99201</li>
+                <li><strong>Mailing address:</strong> 522 W Riverside Ave Ste N Spokane, Washington 99201</li>
               </ul>
             </div>
           </div>
